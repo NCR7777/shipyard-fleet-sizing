@@ -1,0 +1,84 @@
+{
+ "main": {
+  "candidates": [
+   "200",
+   "250",
+   "270",
+   "300",
+   "325",
+   "380",
+   "425",
+   "500",
+   "550",
+   "L270_H425x1",
+   "L270_H425x2",
+   "L270_H425x3",
+   "L270_H425x4",
+   "L300_H425x1",
+   "L300_H425x2",
+   "L300_H425x3",
+   "L300_H425x4",
+   "MX1",
+   "MX2"
+  ],
+  "old45": {
+   "settings": 45,
+   "l300_cheapest": 45,
+   "expanded_cheapest": 45,
+   "premium_min_pct": 0.2,
+   "premium_max_pct": 13.6,
+   "other_winners": []
+  },
+  "main_grid": {
+   "settings": 8000,
+   "l300_cheapest": 8000,
+   "expanded_cheapest": 8000,
+   "premium_min_pct": 0.3,
+   "premium_max_pct": 7.7,
+   "other_winners": []
+  }
+ },
+ "all_10_5": {
+  "candidates": [
+   "200",
+   "250",
+   "270",
+   "300",
+   "325",
+   "380",
+   "425",
+   "500",
+   "550",
+   "L270_H425x1",
+   "L270_H425x2",
+   "L270_H425x3",
+   "L270_H425x4",
+   "L300_H425x1",
+   "L300_H425x2",
+   "L300_H425x3",
+   "L300_H425x4",
+   "MX1",
+   "MX2"
+  ],
+  "old45": {
+   "settings": 45,
+   "l300_cheapest": 41,
+   "expanded_cheapest": 41,
+   "premium_min_pct": -0.9,
+   "premium_max_pct": 8.6,
+   "other_winners": [
+    "500"
+   ]
+  },
+  "main_grid": {
+   "settings": 8000,
+   "l300_cheapest": 7846,
+   "expanded_cheapest": 7846,
+   "premium_min_pct": -0.5,
+   "premium_max_pct": 5.0,
+   "other_winners": [
+    "500"
+   ]
+  }
+ }
+}

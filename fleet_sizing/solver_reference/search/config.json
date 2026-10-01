@@ -1,0 +1,33 @@
+{
+ "max_iter": 786,
+ "time_limit": 60.0,
+ "q_min_frac": 0.05,
+ "q_max_frac": 0.3,
+ "q_min": 2,
+ "q_max": 30,
+ "Kc": 6,
+ "M": 12,
+ "win_s": 1000000000,
+ "segment": 100,
+ "reaction": 0.1,
+ "sigma": [
+  33,
+  9,
+  13
+ ],
+ "sa_worse": 0.002,
+ "sa_p": 0.5,
+ "sa_end_ratio": 0.001,
+ "p_worst": 3.0,
+ "p_shaw": 6.0,
+ "shaw_w": [
+  1.0,
+  1.0,
+  0.5
+ ],
+ "mode_frac": 0.25,
+ "_note": "ALNS settings: 5000 randomised greedy constructions, then up to 786 iterations; the default 60 s time limit is lifted in the fleet-count scans of the article, which use the iteration count only; the initial temperature accepts a 0.2% worse solution with probability 0.5; chronological rebuild repair off; parity = true gives Rigid the same destroy operators and candidate-vehicle rule as Flex (Flex is unaffected).",
+ "n_construct": 5000,
+ "chrono": false,
+ "parity": true
+}

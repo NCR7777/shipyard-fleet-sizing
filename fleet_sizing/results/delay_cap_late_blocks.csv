@@ -1,0 +1,9 @@
+﻿cell,family,K_uncapped,K_120,on_time,coupled_share,max_delay_h,late_over_2h,late_over_4h,late_over_4h_coupled
+jiang_short_baseline,300,5,6,2786,0.12508591065292096,17.4,76,59,40
+jiang_short_baseline,325,5,6,2828,0.09965635738831616,16.8,36,23,16
+uniform_short_baseline,L270_H500x2,5,6,2769,0.10584192439862543,17.6,92,77,20
+uniform_short_baseline,L300_H500x1,6,7,2776,0.24879725085910653,18.8,93,79,1
+uniform_short_baseline,MX2,5,6,2769,0.10584192439862543,17.6,92,77,20
+liu_short_baseline,325,7,8,2793,0.40034364261168387,13.1,38,26,24
+liu_short_baseline,L270_H425x1,7,8,2791,0.3835051546391753,18.6,74,60,1
+liu_short_baseline,MX1,7,8,2791,0.3835051546391753,18.6,74,60,1
