@@ -1,0 +1,95 @@
+{
+ "part_a": {
+  "cells": [
+   "hand2.0_jiang_massdep_baseline",
+   "hand2.0_rohcha_massdep_baseline",
+   "speedliu_jiang_massdep_baseline",
+   "speedliu_rohcha_massdep_baseline"
+  ],
+  "hi_limit": 40,
+  "name": "unresolved_scan",
+  "series": [
+   "hand2.0_jiang_massdep_baseline_T270",
+   "hand2.0_rohcha_massdep_baseline_MX2",
+   "hand2.0_rohcha_massdep_baseline_T270",
+   "hand2.0_rohcha_massdep_baseline_T300",
+   "hand2.0_rohcha_massdep_baseline_T380",
+   "hand2.0_rohcha_massdep_baseline_T550",
+   "speedliu_jiang_massdep_baseline_MX2",
+   "speedliu_jiang_massdep_baseline_T270",
+   "speedliu_jiang_massdep_baseline_T300",
+   "speedliu_jiang_massdep_baseline_T380",
+   "speedliu_jiang_massdep_baseline_T550",
+   "speedliu_rohcha_massdep_baseline_MX2",
+   "speedliu_rohcha_massdep_baseline_T270",
+   "speedliu_rohcha_massdep_baseline_T300",
+   "speedliu_rohcha_massdep_baseline_T380",
+   "speedliu_rohcha_massdep_baseline_T550"
+  ]
+ },
+ "part_b": {
+  "cells": [
+   "jiang_short_baseline",
+   "jiang_massdep_baseline",
+   "rohcha_short_baseline",
+   "rohcha_massdep_baseline"
+  ],
+  "factors": [
+   "speed0.5",
+   "speedliu"
+  ],
+  "families": {
+   "jiang": [
+    "425",
+    "500",
+    "L300_H500xN"
+   ],
+   "rohcha": [
+    "500",
+    "L300_H550xN"
+   ]
+  },
+  "h": {
+   "jiang_short_baseline": 0.1251,
+   "jiang_massdep_baseline": 0.1751,
+   "rohcha_short_baseline": 0.6072,
+   "rohcha_massdep_baseline": 0.6874
+  },
+  "hi_limit": 40,
+  "name": "candidates_speed",
+  "seed_offset": 420000
+ },
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119,
+  120,
+  121,
+  122,
+  123,
+  124,
+  125,
+  126,
+  127,
+  128,
+  129,
+  130
+ ],
+ "study": "slow_handling"
+}

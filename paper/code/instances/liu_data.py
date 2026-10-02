@@ -45,7 +45,7 @@ DIST = [  # Table 5 (m), row = from, column = to; '-' taken as 0
     [225, 70, 455, 355, 515, 185, 0, 385],
     [610, 455, 70, 90, 90, 570, 385, 0],
 ]
-FLEET_L22 = [250, 270, 320, 380, 420]
+FLEET_LIU2022 = [250, 270, 320, 380, 420]
 V_LOADED = 30.0 / 60      # m/s
 V_EMPTY = 50.0 / 60
 HANDLE_S = 600
@@ -84,7 +84,7 @@ def read_tasks(xlsx=XLSX):
     return tasks
 
 
-def make_case(caps=FLEET_L22, start_site=None, xlsx=XLSX, name='liu2022', crew_team=None):
+def make_case(caps=FLEET_LIU2022, start_site=None, xlsx=XLSX, name='liu2022', crew_team=None):
     raw = read_tasks(xlsx)
     tasks = []
     for t in raw:
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     json.dump(d, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     T = d['tasks']
     print('%d tasks; masses %d–%d t; fleet %s; load %s' % (len(T), min(t['mass'] for t in T), max(t['mass'] for t in T),
-                                                FLEET_L22, {k: round(v, 3) if isinstance(v, float) else v
+                                                FLEET_LIU2022, {k: round(v, 3) if isinstance(v, float) else v
                                                             for k, v in d['meta']['load_index'].items()}))
     print('mean loaded travel %.1f min; load and unload %d min each; time-window lengths %s min' % (
         sum(t['tauL'] for t in T) / len(T) / 60, HANDLE_S // 60,

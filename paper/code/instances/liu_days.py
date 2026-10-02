@@ -49,7 +49,7 @@ sys.path.insert(0, os.path.join(HERE, '..', 'common'))
 sys.path.insert(0, os.path.join(HERE, '..', 'search'))
 import params as P                                        # noqa: E402
 from core import load_index                               # noqa: E402
-from liu_data import make_case, FLEET_L22, DAY_MIN            # noqa: E402
+from liu_data import make_case, FLEET_LIU2022, DAY_MIN            # noqa: E402
 from instance_setup import k_star, THETA, LATE_MIN, CONFIG_FILE   # noqa: E402
 
 PAPER = os.path.normpath(os.path.join(HERE, '..', '..'))
@@ -146,7 +146,7 @@ def solve_week(tasks, W, caps, model, seed, cfg=None, start_site=None):
 def _job(a):
     k, seed, X, n, model = a
     tasks, W = sample_week(k, seed)
-    caps = list(FLEET_L22) + [X] * n
+    caps = list(FLEET_LIU2022) + [X] * n
     r = solve_week(tasks, W, caps, model, seed)
     r.update(k=k, seed=seed, X=X, n_add=n, model=model, util=r['busy_s'] / (len(caps) * 5 * DAY_MIN * 60))
     return r
@@ -157,7 +157,7 @@ def plan():
         rs = []
         for s in SEEDS:
             tasks, W = sample_week(k, s)
-            li = load_index(list(FLEET_L22), [t['mass'] for t in tasks], [t['load'] + t['tauL'] + t['unload'] for t in tasks],
+            li = load_index(list(FLEET_LIU2022), [t['mass'] for t in tasks], [t['load'] + t['tauL'] + t['unload'] for t in tasks],
                             60 * P.DELTA_MIN, sum(sum(r) for r in W['tauE']) / (50 * 49), P.MAX_TEAM, H=5 * DAY_MIN * 60.0)
             rs.append(li['rho_flex'])
         print('k = %d: load of the published fleet (5 vehicles) ρ_flex = %.3f '
@@ -401,8 +401,8 @@ def parking():
     utils = []
     for site in [None] + list(SITES):
         for m in MODELS:
-            r = solve_week(W['tasks'], W, list(FLEET_L22), m, 1, start_site=site)
-            u = r['busy_s'] / (len(FLEET_L22) * 5 * DAY_MIN * 60)
+            r = solve_week(W['tasks'], W, list(FLEET_LIU2022), m, 1, start_site=site)
+            u = r['busy_s'] / (len(FLEET_LIU2022) * 5 * DAY_MIN * 60)
             utils.append(u)
             lines.append('| %s | %s | %.2f%% | %.1f | %.2f |' % (site or 'origin of the first task (base setting)', m,
                                                              100 * u, r['tard_s'] / 60, r['overtime_s'] / 3600))

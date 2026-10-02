@@ -1,0 +1,19 @@
+{
+ "settings": 6480,
+ "single_carry_share": 0.9015432098765432,
+ "single_carry_share_outside_extraheavy": 0.9948148148148148,
+ "by_labour": {
+  "crew_team_h": 0.8716049382716049,
+  "crew_veh_h": 0.9401234567901234,
+  "shift_h": 0.9104938271604939,
+  "shift_ot_h": 0.8839506172839506
+ },
+ "same_winner_as_reported": 0.9891975308641975,
+ "same_winner_by_labour": {
+  "crew_team_h": 0.975925925925926,
+  "crew_veh_h": 1.0,
+  "shift_h": 1.0,
+  "shift_ot_h": 0.9808641975308642
+ },
+ "winner_at_count_above_Kstar": 0.004783950617283951
+}

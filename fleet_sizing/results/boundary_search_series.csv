@@ -1,0 +1,77 @@
+﻿series,cell,family,role,K_star,K_new,coop_old,coop_new,new_runs
+jiang_short_baseline_325,jiang_short_baseline,325,challenger,6,6,0.09965635738831616,0.09965635738831616,180
+jiang_short_baseline_MX1,jiang_short_baseline,MX1,incumbent,5,5,0.06254295532646048,0.06219931271477663,180
+jiang_short_baseline_MX2,jiang_short_baseline,MX2,incumbent,5,5,0.0010309278350515464,0.0006872852233676976,180
+jiang_short_tight_380,jiang_short_tight,380,challenger,6,5,0.053951890034364264,0.053951890034364264,420
+jiang_short_tight_MX2,jiang_short_tight,MX2,incumbent,5,5,0.003780068728522337,0.003092783505154639,180
+jiang_massdep_baseline_300,jiang_massdep_baseline,300,challenger,9,9,0.12508591065292096,0.12508591065292096,180
+jiang_massdep_baseline_325,jiang_massdep_baseline,325,control,8,8,0.09965635738831616,0.09965635738831616,180
+jiang_massdep_baseline_380,jiang_massdep_baseline,380,challenger,8,8,0.053951890034364264,0.053951890034364264,180
+jiang_massdep_baseline_425,jiang_massdep_baseline,425,incumbent,7,7,0.012714776632302405,0.012714776632302405,180
+jiang_massdep_baseline_MX1,jiang_massdep_baseline,MX1,challenger,9,9,0.14776632302405499,0.14604810996563575,180
+jiang_massdep_baseline_MX2,jiang_massdep_baseline,MX2,challenger and incumbent,8,8,0.04054982817869416,0.03676975945017182,180
+jiang_massdep_tight_500,jiang_massdep_tight,500,control,7,7,0.0,0.0,180
+jiang_massdep_tight_MX2,jiang_massdep_tight,MX2,control,8,8,0.06632302405498282,0.06632302405498282,180
+jiang_long_baseline_325,jiang_long_baseline,325,challenger,10,10,0.09965635738831616,0.09965635738831616,180
+jiang_long_baseline_425,jiang_long_baseline,425,incumbent,8,8,0.012714776632302405,0.012714776632302405,180
+jiang_long_baseline_MX2,jiang_long_baseline,MX2,incumbent,9,9,0.05257731958762887,0.050515463917525774,180
+jiang_long_tight_300,jiang_long_tight,300,incumbent,11,11,0.12508591065292096,0.12508591065292096,180
+jiang_long_tight_325,jiang_long_tight,325,challenger,11,11,0.09965635738831616,0.09965635738831616,180
+jiang_long_tight_380,jiang_long_tight,380,incumbent,10,10,0.053951890034364264,0.053951890034364264,180
+jiang_long_tight_425,jiang_long_tight,425,challenger and incumbent,10,10,0.012714776632302405,0.012714776632302405,180
+jiang_long_tight_500,jiang_long_tight,500,incumbent,9,9,0.0,0.0,180
+jiang_long_tight_MX2,jiang_long_tight,MX2,challenger and incumbent,11,11,0.0725085910652921,0.07216494845360824,180
+lightskew_short_baseline_300,lightskew_short_baseline,300,challenger,6,6,0.09003436426116838,0.09003436426116838,180
+lightskew_short_baseline_MX1,lightskew_short_baseline,MX1,incumbent,5,5,0.03264604810996564,0.03161512027491409,180
+lightskew_short_baseline_MX2,lightskew_short_baseline,MX2,incumbent,5,5,0.0,0.0,180
+lightskew_massdep_baseline_300,lightskew_massdep_baseline,300,challenger,9,9,0.09003436426116838,0.09003436426116838,180
+lightskew_massdep_baseline_500,lightskew_massdep_baseline,500,control,7,7,0.0,0.0,180
+lightskew_massdep_baseline_MX1,lightskew_massdep_baseline,MX1,control,8,8,0.10687285223367697,0.10687285223367697,180
+lightskew_massdep_baseline_MX2,lightskew_massdep_baseline,MX2,incumbent,7,7,0.01958762886597938,0.019243986254295534,180
+lightskew_massdep_tight_325,lightskew_massdep_tight,325,challenger,9,9,0.07594501718213058,0.07594501718213058,180
+lightskew_massdep_tight_500,lightskew_massdep_tight,500,control,7,7,0.0,0.0,180
+lightskew_massdep_tight_MX2,lightskew_massdep_tight,MX2,incumbent,8,8,0.030584192439862542,0.029553264604810996,180
+lightskew_long_baseline_300,lightskew_long_baseline,300,challenger,10,10,0.09003436426116838,0.09003436426116838,180
+lightskew_long_baseline_425,lightskew_long_baseline,425,challenger,9,9,0.031958762886597936,0.031958762886597936,180
+lightskew_long_baseline_500,lightskew_long_baseline,500,incumbent,8,8,0.0,0.0,180
+lightskew_long_baseline_MX2,lightskew_long_baseline,MX2,incumbent,9,9,0.01958762886597938,0.01718213058419244,180
+lightskew_long_tight_300,lightskew_long_tight,300,challenger,11,11,0.09003436426116838,0.09003436426116838,180
+lightskew_long_tight_325,lightskew_long_tight,325,challenger,11,11,0.07594501718213058,0.07594501718213058,180
+lightskew_long_tight_500,lightskew_long_tight,500,incumbent,9,9,0.0,0.0,180
+lightskew_long_tight_MX2,lightskew_long_tight,MX2,incumbent,10,10,0.04673539518900344,0.04639175257731959,180
+uniform_short_tight_MX2,uniform_short_tight,MX2,control,6,6,0.13848797250859107,0.13711340206185568,180
+extraheavy_short_baseline_325,extraheavy_short_baseline,325,challenger,7,7,0.18419243986254297,0.18419243986254297,180
+extraheavy_short_baseline_500,extraheavy_short_baseline,500,challenger,6,6,0.10824742268041238,0.10824742268041238,180
+extraheavy_short_baseline_550,extraheavy_short_baseline,550,incumbent,5,5,0.09140893470790377,0.09140893470790377,180
+extraheavy_short_baseline_MX1,extraheavy_short_baseline,MX1,challenger,7,7,0.14398625429553263,0.14329896907216494,180
+extraheavy_short_baseline_MX2,extraheavy_short_baseline,MX2,challenger and incumbent,6,5,0.09518900343642611,0.09140893470790377,450
+extraheavy_short_tight_500,extraheavy_short_tight,500,control,6,6,0.10824742268041238,0.10824742268041238,180
+extraheavy_massdep_baseline_270,extraheavy_massdep_baseline,270,control,13,13,0.31305841924398625,0.31305841924398625,180
+extraheavy_massdep_baseline_300,extraheavy_massdep_baseline,300,challenger,12,12,0.19347079037800688,0.19347079037800688,180
+extraheavy_massdep_baseline_325,extraheavy_massdep_baseline,325,incumbent,11,11,0.18419243986254297,0.18419243986254297,180
+extraheavy_massdep_baseline_380,extraheavy_massdep_baseline,380,incumbent,10,10,0.1584192439862543,0.1584192439862543,180
+extraheavy_massdep_baseline_425,extraheavy_massdep_baseline,425,incumbent,10,10,0.14432989690721648,0.14432989690721648,180
+extraheavy_massdep_baseline_500,extraheavy_massdep_baseline,500,incumbent,9,9,0.10824742268041238,0.10824742268041238,180
+extraheavy_massdep_baseline_MX2,extraheavy_massdep_baseline,MX2,challenger and incumbent,11,11,0.14948453608247422,0.1463917525773196,180
+extraheavy_massdep_tight_300,extraheavy_massdep_tight,300,challenger and incumbent,13,13,0.19347079037800688,0.19347079037800688,180
+extraheavy_massdep_tight_325,extraheavy_massdep_tight,325,incumbent,12,12,0.18419243986254297,0.18419243986254297,180
+extraheavy_massdep_tight_380,extraheavy_massdep_tight,380,incumbent,11,11,0.1584192439862543,0.1584192439862543,180
+extraheavy_massdep_tight_425,extraheavy_massdep_tight,425,challenger,11,11,0.14432989690721648,0.14432989690721648,180
+extraheavy_massdep_tight_500,extraheavy_massdep_tight,500,incumbent,10,10,0.10824742268041238,0.10824742268041238,180
+extraheavy_massdep_tight_550,extraheavy_massdep_tight,550,control,10,10,0.09140893470790377,0.09140893470790377,180
+extraheavy_massdep_tight_MX2,extraheavy_massdep_tight,MX2,incumbent,12,12,0.17010309278350516,0.16907216494845362,180
+extraheavy_long_baseline_300,extraheavy_long_baseline,300,challenger and incumbent,12,12,0.19347079037800688,0.19347079037800688,180
+extraheavy_long_baseline_325,extraheavy_long_baseline,325,incumbent,11,11,0.18419243986254297,0.18419243986254297,180
+extraheavy_long_baseline_380,extraheavy_long_baseline,380,incumbent,10,10,0.1584192439862543,0.1584192439862543,180
+extraheavy_long_baseline_425,extraheavy_long_baseline,425,incumbent,10,10,0.14432989690721648,0.14432989690721648,180
+extraheavy_long_baseline_500,extraheavy_long_baseline,500,challenger and incumbent,10,10,0.10824742268041238,0.10824742268041238,180
+extraheavy_long_baseline_550,extraheavy_long_baseline,550,incumbent,9,9,0.09140893470790377,0.09140893470790377,180
+extraheavy_long_baseline_MX2,extraheavy_long_baseline,MX2,incumbent,11,11,0.1457044673539519,0.14398625429553263,180
+extraheavy_long_tight_300,extraheavy_long_tight,300,incumbent,13,13,0.19347079037800688,0.19347079037800688,180
+extraheavy_long_tight_325,extraheavy_long_tight,325,challenger,13,13,0.18419243986254297,0.18419243986254297,180
+extraheavy_long_tight_380,extraheavy_long_tight,380,challenger and incumbent,12,12,0.1584192439862543,0.1584192439862543,180
+extraheavy_long_tight_425,extraheavy_long_tight,425,challenger,12,11,0.14432989690721648,0.14432989690721648,450
+extraheavy_long_tight_500,extraheavy_long_tight,500,incumbent,11,11,0.10824742268041238,0.10824742268041238,180
+extraheavy_long_tight_550,extraheavy_long_tight,550,challenger,11,11,0.09140893470790377,0.09140893470790377,180
+extraheavy_long_tight_MX1,extraheavy_long_tight,MX1,challenger,14,14,0.218213058419244,0.21649484536082475,180
+extraheavy_long_tight_MX2,extraheavy_long_tight,MX2,challenger and incumbent,13,13,0.15017182130584192,0.14914089347079038,180

@@ -1,0 +1,82 @@
+{
+ "settings": 3600,
+ "undecided_packaged": 540,
+ "undecided_now": 540,
+ "undecided_now_by": {
+  "speedliu jiang_massdep_baseline": 180,
+  "speedliu rohcha_massdep_baseline": 180,
+  "hand2.0 rohcha_massdep_baseline": 180
+ },
+ "precheck": {
+  "unattainable": 15,
+  "open": 1
+ },
+ "precheck_unattainable": [
+  "hand2.0_rohcha_massdep_baseline_MX2",
+  "hand2.0_rohcha_massdep_baseline_T270",
+  "hand2.0_rohcha_massdep_baseline_T300",
+  "hand2.0_rohcha_massdep_baseline_T380",
+  "hand2.0_rohcha_massdep_baseline_T550",
+  "speedliu_jiang_massdep_baseline_MX2",
+  "speedliu_jiang_massdep_baseline_T270",
+  "speedliu_jiang_massdep_baseline_T300",
+  "speedliu_jiang_massdep_baseline_T380",
+  "speedliu_jiang_massdep_baseline_T550",
+  "speedliu_rohcha_massdep_baseline_MX2",
+  "speedliu_rohcha_massdep_baseline_T270",
+  "speedliu_rohcha_massdep_baseline_T300",
+  "speedliu_rohcha_massdep_baseline_T380",
+  "speedliu_rohcha_massdep_baseline_T550"
+ ],
+ "P2_single_carry_decided": 1.0,
+ "P2_by_level": {
+  "speedliu": 1.0,
+  "speed0.5": 1.0,
+  "speed0.75": 1.0,
+  "hand1.5": 1.0,
+  "hand2.0": 1.0
+ },
+ "winner_changed_by_new_families": 1966,
+ "P3_light_tiers_coupling_above_kappa": 1926,
+ "P3_of_which_lost": 0.9922118380062306,
+ "P3_light_tiers_below_kappa": 774,
+ "P3_of_which_lost_below": 0.8462532299741602,
+ "winners_by_level": {
+  "speedliu": {
+   "500": 53,
+   "425": 7,
+   "L300_H500x2": 120,
+   "550": 180
+  },
+  "speed0.5": {
+   "500": 78,
+   "L300_H500x2": 110,
+   "425": 89,
+   "L300_H500x1": 83,
+   "550": 164,
+   "L300_H550x8": 43,
+   "L300_H550x5": 153
+  },
+  "speed0.75": {
+   "380": 136,
+   "550": 475,
+   "MX2": 109
+  },
+  "hand1.5": {
+   "L300_H500x2": 180,
+   "L300_H500x1": 179,
+   "425": 1,
+   "L300_H550x9": 169,
+   "550": 28,
+   "L300_H550x4": 163
+  },
+  "hand2.0": {
+   "425": 98,
+   "500": 11,
+   "L300_H500x2": 83,
+   "L300_H500x1": 168,
+   "L300_H550x5": 178,
+   "550": 2
+  }
+ }
+}

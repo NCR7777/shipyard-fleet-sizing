@@ -4,6 +4,7 @@ Uses only stored runs and replays of the main study.
 
   python decision_strength.py [workers]   -> results/bootstrap_series.csv, bootstrap_decisions.csv, grading_series.csv, grading_decisions.csv,
                                         handling_ranks.csv, claim_numbers.json, R25_strength_summary.md
+  python decision_strength.py bound        -> results/search_bound.json (search_bound)
   python decision_strength.py selfcheck
 """
 import csv
@@ -353,6 +354,33 @@ def main(workers=6):
     print('\n'.join(L))
 
 
+def search_bound():
+    """How far could search-dependent counts move the coupled share of the cheapest fleet? Fleets that couple more than
+    one block in ten lose one transporter (not below the family floor) and are repriced as in the search-dependence rule
+    (cost_decisions.decisions: shift labour at the lower count, operating labour unchanged): (a) only those graded weak or
+    medium, (b) all of them. Share of the 6,480 settings whose cheapest fleet couples at most one block in ten, overall
+    and outside the extra-heavy scenario; share of weak or medium grades per family.  -> results/search_bound.json"""
+    fleets = rcsv(RES / 'main_fleets.csv')
+    coop = {(r['cell'], r['family']): float(r['coop_share']) for r in fleets}
+    grade = {(r['cell'], r['family']): r['grade'] for r in rcsv(RES / 'grading_series.csv')}
+    fl = C.load(RES / 'main_fleets.csv')
+    weak = lambda k: grade.get(k) in ('weak', 'medium')
+
+    def shares(cut):
+        f2 = {k: (dict(v, K=v['K'] - 1) if cut(k) and coop[k] > 0.10 and v['K'] - 1 >= C.floor_of(k[1]) else v) for k, v in fl.items()}
+        rows = C.decisions(f2, C.MAIN_MODELS, C.main_r(), C.LAB4)
+        ok = [coop[x['cell'], x['winner']] <= 0.10 for x in rows]
+        out = [x for x, o in zip(rows, ok) if not x['cell'].startswith('extraheavy')]
+        return dict(settings=len(rows), share=sum(ok) / len(rows), lowered=sum(f2[k]['K'] < fl[k]['K'] for k in fl),
+                    share_outside_extra_heavy=sum(coop[x['cell'], x['winner']] <= 0.10 for x in out) / len(out))
+    fams = sorted({f for _, f in fl}, key=lambda f: (f.startswith('MX'), f))
+    res = dict(reported=shares(lambda k: False), weak_or_medium_minus_one=shares(weak), all_minus_one=shares(lambda k: True),
+               weak_or_medium_by_family={f: dict(series=sum(1 for k in fl if k[1] == f), weak_or_medium=sum(1 for k in fl if k[1] == f and weak(k)))
+                                         for f in fams})
+    (RES / 'search_bound.json').write_text(json.dumps(res, indent=1) + '\n', encoding='utf8')
+    print(json.dumps(res, indent=1))
+
+
 def write(path, rows):
     with open(path, 'w', encoding='utf-8-sig', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
@@ -376,5 +404,7 @@ def selfcheck():
 if __name__ == '__main__':
     if sys.argv[1:2] == ['selfcheck']:
         selfcheck()
+    elif sys.argv[1:2] == ['bound']:
+        search_bound()
     else:
         main(int(sys.argv[1]) if len(sys.argv) > 1 else 6)

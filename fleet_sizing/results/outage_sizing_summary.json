@@ -1,0 +1,73 @@
+{
+ "settings": 6480,
+ "fleets": 404,
+ "fleets_without_N1_count": 0,
+ "single_carry_N1": 0.874537037037037,
+ "single_carry_N1_outside_extraheavy": 0.9875925925925926,
+ "same_winner_as_nominal": 0.7859567901234568,
+ "N1_winner_one_heavy_mix_outside_extraheavy": 0.0,
+ "nominal_winner_one_heavy_mix_outside_extraheavy": 0.057962962962962966,
+ "premium_N1": {
+  "median": 0.08765829717233697,
+  "p90": 0.19839309827927454,
+  "max": 0.27745081473923827
+ },
+ "option_value_nominal_upper": {
+  "median": 0.0,
+  "p90": 0.06682756086557329,
+  "max": 0.19589513313620577
+ },
+ "option_value_nominal_lower": {
+  "median": 0.0,
+  "p90": 0.0,
+  "max": 0.05784834181970333
+ },
+ "option_value_N1_upper": {
+  "median": 0.0,
+  "p90": 0.0643331677031469,
+  "max": 0.2029405357468208
+ },
+ "option_value_N1_lower": {
+  "median": 0.0,
+  "p90": 0.019923072350642945,
+  "max": 0.0829517120224712
+ },
+ "option_N1_upper_zero_share": 0.6122222222222222,
+ "option_nominal_upper_zero_share": 0.6048148148148148,
+ "winners_N1": {
+  "500": 1630,
+  "425": 1582,
+  "550": 1321,
+  "MX2": 661,
+  "380": 299,
+  "325": 246,
+  "300": 232,
+  "L300_H500x3": 180,
+  "L300_H425x3": 159,
+  "L270_H500x2": 106,
+  "L300_H500x2": 43,
+  "L300_H425x4": 15
+ },
+ "extra_units_of_N1_winner": {
+  "1": 6109,
+  "2": 371
+ },
+ "by_labour": {
+  "shift_h": {
+   "single_carry_N1": 0.8796296296296297,
+   "same_winner": 0.7487654320987654
+  },
+  "crew_veh_h": {
+   "single_carry_N1": 0.9253086419753086,
+   "same_winner": 0.8833333333333333
+  },
+  "crew_team_h": {
+   "single_carry_N1": 0.8117283950617284,
+   "same_winner": 0.6993827160493827
+  },
+  "shift_ot_h": {
+   "single_carry_N1": 0.8814814814814815,
+   "same_winner": 0.8123456790123457
+  }
+ }
+}

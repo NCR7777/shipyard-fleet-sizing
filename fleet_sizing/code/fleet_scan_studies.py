@@ -1,10 +1,10 @@
 """Further fleet-count studies on the main specification with the same scheduler as the main study (directory
-`main`): one-factor sensitivity (`sensitivity`), tier-specific speeds (`tier_speeds`, `tier_speeds_jiang`), heavy-block share (`heavy_share`), the second
-case on the published data of Liu et al. (2022) (`second_case`), overweight-only coupling runs (`overweight_only`) and the exact
-comparison on single-batch instances (`exact`). fleet_scan.py is imported unchanged, so the file hashes recorded for the
-main study stay valid. Starting counts: each experiment's original K* at 95% (its summary.jsonl); where missing,
-the reference count of the earlier ten-instance scan + 2. Runs are started at below-normal process priority so
-that they use only CPU left idle by the main study.
+`main`): one-factor sensitivity (`sensitivity`) with its coupling-time axis (`delta_axis`, `delta_axis_mix`), tier-specific speeds (`tier_speeds`,
+`tier_speeds_jiang`), heavy-block share (`heavy_share`), the second case on the published data of Liu et al. (2022) (`second_case`),
+overweight-only coupling runs (`overweight_only`) and the exact comparison on single-batch instances (`exact`). fleet_scan.py is
+imported unchanged, so the file hashes recorded for the main study stay valid. Starting counts: each experiment's
+original K* at 95% (its summary.jsonl); where missing, the reference count of the earlier ten-instance scan + 2.
+Runs are started at below-normal process priority so that they use only CPU left idle by the main study.
 
   python fleet_scan_studies.py prepare-sensitivity sensitivity | prepare-tier-speeds tier_speeds | prepare-heavy-share heavy_share | prepare-second-case second_case
   python fleet_scan_studies.py run <study> [workers]
@@ -147,6 +147,31 @@ def prepare_tier_speeds_jiang(study):
     items = [('tierspeed_%s_%s' % (cell, tname(t)), cell, t, {'speed': key}, k[cell, t] + 1)
              for cell in ('jiang_short_baseline', 'jiang_massdep_baseline') for t, key in (('425', 'tier380'), ('500', 'tier550'), ('MX1', 'tier550'))]
     build(study, items, fleet_scan.SEEDS, 70000)
+
+
+def prepare_delta_axis(study):
+    """Coupling time between the levels 0 and 10 min of the one-factor sensitivity study (directory `delta_axis`): delta = 2.5
+    and 5 min in `jiang_short_baseline`, for the five fleets of that study and `MX1` (the main-grid winner of that condition
+    under shift staffing); start = main-study count; seeds as in the one-factor study."""
+    import csv
+    k = {(r['cell'], r['family']): int(r['K_final'])
+         for r in csv.DictReader(open(STUDY_ROOT / 'results' / 'main_fleets.csv', encoding='utf-8-sig'))}
+    cell = 'jiang_short_baseline'
+    items = [('delta%g_%s_%s' % (d, cell, tname(t)), cell, t, dict(delta_min=d), k[cell, t])
+             for d in (2.5, 5) for t in ('270', '300', '380', '550', 'MX2', 'MX1')]
+    build(study, items, fleet_scan.SEEDS, 60000)
+
+
+def prepare_delta_axis_mix(study):
+    """`MX1` at the coupling times 0, 20, 30 and 40 min of the one-factor sensitivity study in `jiang_short_baseline` (directory
+    `delta_axis_mix`), so that every level of that axis compares the same six fleets (10 min: main-study runs); start =
+    main-study count; seeds as in the one-factor study."""
+    import csv
+    k = {(r['cell'], r['family']): int(r['K_final'])
+         for r in csv.DictReader(open(STUDY_ROOT / 'results' / 'main_fleets.csv', encoding='utf-8-sig'))}
+    cell = 'jiang_short_baseline'
+    items = [('delta%g_%s_MX1' % (d, cell), cell, 'MX1', dict(delta_min=d), k[cell, 'MX1']) for d in (0, 20, 30, 40)]
+    build(study, items, fleet_scan.SEEDS, 60000)
 
 
 def prepare_heavy_share(study):
@@ -342,5 +367,5 @@ if __name__ == '__main__':
     if cmd == 'run':
         run(study, int(sys.argv[3]) if len(sys.argv) > 3 else 8)
     else:
-        {'prepare-sensitivity': prepare_sensitivity, 'prepare-tier-speeds': prepare_tier_speeds, 'prepare-tier-speeds-jiang': prepare_tier_speeds_jiang, 'prepare-heavy-share': prepare_heavy_share, 'prepare-second-case': prepare_second_case,
+        {'prepare-sensitivity': prepare_sensitivity, 'prepare-delta-axis': prepare_delta_axis, 'prepare-delta-axis-mix': prepare_delta_axis_mix, 'prepare-tier-speeds': prepare_tier_speeds, 'prepare-tier-speeds-jiang': prepare_tier_speeds_jiang, 'prepare-heavy-share': prepare_heavy_share, 'prepare-second-case': prepare_second_case,
          'prepare-overweight-only': prepare_overweight_only, 'prepare-exact': prepare_exact}[cmd](study)

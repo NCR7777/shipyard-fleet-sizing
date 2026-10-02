@@ -1,0 +1,124 @@
+{
+ "settings": 2340,
+ "unqualified_series": [],
+ "P1_hits": 6,
+ "P1_of": 13,
+ "P1": {
+  "jiang_short_tight": {
+   "n_star": 1,
+   "modal_n": 1,
+   "counts": {
+    "1": 135,
+    "2": 45
+   }
+  },
+  "jiang_massdep_baseline": {
+   "n_star": 2,
+   "modal_n": 1,
+   "counts": {
+    "1": 78,
+    "3": 24,
+    "2": 78
+   }
+  },
+  "jiang_long_baseline": {
+   "n_star": 2,
+   "modal_n": 2,
+   "counts": {
+    "2": 175,
+    "3": 5
+   }
+  },
+  "lightskew_short_baseline": {
+   "n_star": 1,
+   "modal_n": 1,
+   "counts": {
+    "1": 179,
+    "2": 1
+   }
+  },
+  "lightskew_massdep_baseline": {
+   "n_star": 1,
+   "modal_n": 2,
+   "counts": {
+    "2": 180
+   }
+  },
+  "uniform_short_tight": {
+   "n_star": 3,
+   "modal_n": 3,
+   "counts": {
+    "3": 134,
+    "4": 46
+   }
+  },
+  "uniform_massdep_baseline": {
+   "n_star": 5,
+   "modal_n": 5,
+   "counts": {
+    "5": 110,
+    "7": 32,
+    "6": 38
+   }
+  },
+  "uniform_long_baseline": {
+   "n_star": 5,
+   "modal_n": 5,
+   "counts": {
+    "5": 152,
+    "6": 27,
+    "7": 1
+   }
+  },
+  "rohcha_short_baseline": {
+   "n_star": 4,
+   "modal_n": 3,
+   "counts": {
+    "3": 100,
+    "4": 80
+   }
+  },
+  "rohcha_massdep_baseline": {
+   "n_star": 7,
+   "modal_n": 6,
+   "counts": {
+    "6": 110,
+    "8": 17,
+    "7": 53
+   }
+  },
+  "liu_short_tight": {
+   "n_star": 3,
+   "modal_n": 2,
+   "counts": {
+    "2": 92,
+    "4": 38,
+    "3": 50
+   }
+  },
+  "liu_massdep_baseline": {
+   "n_star": 5,
+   "modal_n": 4,
+   "counts": {
+    "4": 73,
+    "7": 19,
+    "6": 40,
+    "5": 48
+   }
+  },
+  "liu_long_baseline": {
+   "n_star": 4,
+   "modal_n": 5,
+   "counts": {
+    "5": 153,
+    "6": 27
+   }
+  }
+ },
+ "P2_share_abs_n_minus_nstar_le_1": 0.9662393162393162,
+ "P2_best_at_grid_edge": 0.27863247863247864,
+ "P3_ext_single_carry": 1.0,
+ "P4_ext_wins": 0.9525641025641025,
+ "P4_premium_median": 0.019035038879107735,
+ "winner_single_carry": 1.0
+}

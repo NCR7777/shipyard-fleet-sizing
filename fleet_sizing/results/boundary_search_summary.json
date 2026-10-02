@@ -1,0 +1,14 @@
+{
+ "series": 76,
+ "lost_one_or_more": {
+  "heavy": 2,
+  "mix": 1
+ },
+ "controls_lost": 0,
+ "decisions_changed": 242,
+ "settings": 6480,
+ "share_reported": 0.907716049382716,
+ "share_new": 0.9078703703703703,
+ "share_reported_outside_extra_heavy": 0.9940740740740741,
+ "share_new_outside_extra_heavy": 0.9940740740740741
+}

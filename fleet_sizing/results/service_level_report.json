@@ -1,0 +1,48 @@
+{
+ "90": {
+  "series_with_count": 42,
+  "series_without_count": [],
+  "counts_not_determined": [],
+  "boundary_missing": [],
+  "dK_vs_95": {
+   "0": 40,
+   "-1": 2
+  },
+  "P1_single_carry_outside_extraheavy": 1.0,
+  "P2_same_winner": 0.9325396825396826,
+  "P2_by_condition": {
+   "jiang_short_baseline": 0.9833333333333333,
+   "jiang_massdep_baseline": 0.9666666666666667,
+   "extraheavy_short_baseline": 0.5833333333333334,
+   "rohcha_short_baseline": 1.0,
+   "rohcha_massdep_baseline": 1.0,
+   "liu_short_baseline": 0.9944444444444445,
+   "liu_massdep_baseline": 1.0
+  },
+  "P4_median_winner_coop_outside_extraheavy": 0.0,
+  "P4_median_winner_coop_95_outside_extraheavy": 0.0
+ },
+ "98": {
+  "series_with_count": 42,
+  "series_without_count": [],
+  "counts_not_determined": [],
+  "boundary_missing": [],
+  "dK_vs_95": {
+   "0": 37,
+   "1": 5
+  },
+  "P1_single_carry_outside_extraheavy": 1.0,
+  "P2_same_winner": 0.8706349206349207,
+  "P2_by_condition": {
+   "jiang_short_baseline": 0.6444444444444445,
+   "jiang_massdep_baseline": 0.9888888888888889,
+   "extraheavy_short_baseline": 0.5055555555555555,
+   "rohcha_short_baseline": 1.0,
+   "rohcha_massdep_baseline": 1.0,
+   "liu_short_baseline": 0.9555555555555556,
+   "liu_massdep_baseline": 1.0
+  },
+  "P4_median_winner_coop_outside_extraheavy": 0.0,
+  "P4_median_winner_coop_95_outside_extraheavy": 0.0
+ }
+}

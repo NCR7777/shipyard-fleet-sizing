@@ -1,8 +1,8 @@
 {
- "title": "Code and data for: Shipyard transporter capacity choice for single or coupled carriage of heavy hull blocks at equal service",
+ "title": "Code and data for: Service-constrained sizing and composition of shipyard block-transporter fleets with cooperative lifting",
  "upload_type": "software",
- "version": "1.0",
- "description": "Scheduling, fleet-sizing and pricing code, the result tables behind every number, table and figure of the article, and the transporter price sources (Supplementary Tables S1 and S2). The digitised road network of the main shipyard, the instances generated on it and the individual schedules are not included, because travel times reveal the facility layout; they are available to reviewers on request. The second case uses the published data of Liu et al. (2022) and can be rerun end to end. See README.md.",
+ "version": "2.0",
+ "description": "Scheduling, fleet-sizing and pricing code, the result tables of every study, the run-level results of all 214,210 scheduling runs and the transporter price sources. The digitised road network of the main shipyard, the instances generated on it and the individual schedules are not included, because travel times reveal the facility layout; they are available to reviewers on request. The second case uses the published data of Liu et al. (2022) and can be rerun end to end. See README.md.",
  "creators": [
   {
    "name": "Na, Chunrui",
@@ -36,12 +36,12 @@
  ],
  "license": "mit",
  "keywords": [
-  "ship production",
-  "block transporter",
-  "fleet sizing",
-  "coupled carriage",
-  "capacity choice",
-  "crew cost"
+  "shipbuilding logistics",
+  "block transportation",
+  "fleet sizing and composition",
+  "cooperative transport",
+  "multi-vehicle one-cargo",
+  "adaptive large neighbourhood search"
  ],
  "related_identifiers": [
   {
@@ -51,5 +51,5 @@
    "scheme": "doi"
   }
  ],
- "notes": "Code: MIT licence. Result tables, supplementary tables and derived data: CC BY 4.0 (LICENSE-DATA.md). Third-party data keep their licences: the S1 Data of Liu et al. (2022), PLOS ONE, CC BY 4.0."
+ "notes": "Code: MIT licence. Result tables, design files and price data: CC BY 4.0 (LICENSE-DATA.md). Third-party data keep their licences: the S1 Data of Liu et al. (2022), PLOS ONE, CC BY 4.0."
 }

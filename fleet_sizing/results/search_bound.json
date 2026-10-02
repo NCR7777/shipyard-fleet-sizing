@@ -1,0 +1,66 @@
+{
+ "reported": {
+  "settings": 6480,
+  "share": 0.907716049382716,
+  "lowered": 0,
+  "share_outside_extra_heavy": 0.9940740740740741
+ },
+ "weak_or_medium_minus_one": {
+  "settings": 6480,
+  "share": 0.8692901234567901,
+  "lowered": 106,
+  "share_outside_extra_heavy": 0.9887037037037038
+ },
+ "all_minus_one": {
+  "settings": 6480,
+  "share": 0.6884259259259259,
+  "lowered": 258,
+  "share_outside_extra_heavy": 0.8087037037037037
+ },
+ "weak_or_medium_by_family": {
+  "200": {
+   "series": 30,
+   "weak_or_medium": 13
+  },
+  "250": {
+   "series": 30,
+   "weak_or_medium": 15
+  },
+  "270": {
+   "series": 36,
+   "weak_or_medium": 18
+  },
+  "300": {
+   "series": 36,
+   "weak_or_medium": 15
+  },
+  "325": {
+   "series": 36,
+   "weak_or_medium": 13
+  },
+  "380": {
+   "series": 36,
+   "weak_or_medium": 10
+  },
+  "425": {
+   "series": 36,
+   "weak_or_medium": 11
+  },
+  "500": {
+   "series": 36,
+   "weak_or_medium": 4
+  },
+  "550": {
+   "series": 36,
+   "weak_or_medium": 1
+  },
+  "MX1": {
+   "series": 36,
+   "weak_or_medium": 14
+  },
+  "MX2": {
+   "series": 36,
+   "weak_or_medium": 9
+  }
+ }
+}

@@ -1,12 +1,13 @@
-"""Supplementary Tables S1 (transporter price sources) and S2 (capital-to-labour price ratio r).
+"""Supplementary tables of the transporter price sources (S1) and of the capital-to-labour price ratio r
+(`S2_price_ratio.csv`).
 
 S1: the 33 award records of earlier_study/data/price_sources_R24.md, section 1.1 (the same rows and parser as
 price_curve.records), in English: descriptive fields translated, buyers by English name, the notice excerpt kept in the
 original Chinese, dates and announcement links as published. buyer_cluster numbers the buyers in the order of the
 cluster bootstrap, so that price_curve refits identically from S1 alone in the public release (no working record).
-S2: every combination behind the calibrated interval of r (price_curve.r_range): capital recovery over 8, 10 or 15
-years at 4, 6 or 8% interest, 250 or 300 operating days, 30 or 40% employer on-costs, two wage anchors and two
-annual-hour bases, with the affine price of a 270 t transporter (VAT removed) from results/price_curve.json.
+Price-ratio table: every combination behind the calibrated interval of r (price_curve.r_range): capital recovery over
+8, 10 or 15 years at 4, 6 or 8% interest, 250 or 300 operating days, 30 or 40% employer on-costs, two wage anchors
+and two annual-hour bases, with the affine price of a 270 t transporter (VAT removed) from results/price_curve.json.
 The interval limits must equal price_curve.json.
 
   python make_supplementary.py   -> results/S1_price_sources.csv, results/S2_price_ratio.csv

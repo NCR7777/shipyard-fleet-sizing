@@ -14,10 +14,10 @@ JIANG_TASKS = os.path.join(PAPER, 'params', 'jiang2021_tasks.csv')
 
 # ---- Vehicles ----
 V_EMPTY = 12.0 / 3.6      # m/s, empty 12 km/h (Dafang DCY270 specification)
-# Speed scenarios: 'base' = maximum values of the specification; 'x0.5' = both halved; 'V-L22' = model parameters of
+# Speed scenarios: 'base' = maximum values of the specification; 'x0.5' = both halved; 'V-liu' = model parameters of
 # Liu 2022 §4.1.1 ("under load is 30 meter/min…under no load is 50 meter/min", checked against the paper).
 # Values are (empty, loaded) m/s.
-SPEEDS = {'base': (12.0 / 3.6, 6.0 / 3.6), 'x0.5': (6.0 / 3.6, 3.0 / 3.6), 'V-L22': (50.0 / 60, 30.0 / 60)}
+SPEEDS = {'base': (12.0 / 3.6, 6.0 / 3.6), 'x0.5': (6.0 / 3.6, 3.0 / 3.6), 'V-liu': (50.0 / 60, 30.0 / 60)}
 # Equal speeds for all tiers is an assumption: Dafang DCY380 runs 10/5 km/h and DCY500 12/5 km/h.
 V_LOADED = 6.0 / 3.6      # m/s, loaded 6 km/h (Dafang DCY270)
 PLAT_LEN = 16.25          # m, DCY270 platform length; lower bound of the parked footprint length

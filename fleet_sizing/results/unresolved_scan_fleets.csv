@@ -1,0 +1,2 @@
+﻿series,cell,family,K_start,K_final,K_single,K_cp0,K_cp100,K_cp300,K_greedy,boundary_checked,on_time,crew_veh_h,crew_team_h,after_h,after_days,coop_share,shift_h,runs,time_limit_hits,wall_h
+hand2.0_jiang_massdep_baseline_T270,jiang_massdep_baseline,270,12,17,17,17,17,17,,True,0.9508591065292096,943.418074074074,704.7449259259257,7.098379629629631,30,0.277319587628866,1088,270,0,2.584086307361149

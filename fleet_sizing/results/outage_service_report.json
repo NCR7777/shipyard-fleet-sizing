@@ -1,0 +1,75 @@
+{
+ "fleets": 42,
+ "complete": 42,
+ "check1": [
+  {
+   "cell": "jiang_short_baseline",
+   "mix": "L300_H500x1",
+   "loss_mix": 0.4683848797250859,
+   "cover": "500",
+   "loss_cover": 0.16701030927835048,
+   "holds": true,
+   "mix_outage_coop": 0.12508591065292096
+  },
+  {
+   "cell": "jiang_short_baseline",
+   "mix": "MX1",
+   "loss_mix": 0.5278350515463918,
+   "cover": "500",
+   "loss_cover": 0.16701030927835048,
+   "holds": true,
+   "mix_outage_coop": 0.277319587628866
+  },
+  {
+   "cell": "jiang_massdep_baseline",
+   "mix": "MX1",
+   "loss_mix": 0.3522336769759451,
+   "cover": "500",
+   "loss_cover": 0.13642611683848793,
+   "holds": true,
+   "mix_outage_coop": 0.277319587628866
+  },
+  {
+   "cell": "extraheavy_short_baseline",
+   "mix": "MX1",
+   "loss_mix": 0.3625429553264605,
+   "cover": "550",
+   "loss_cover": 0.40824742268041236,
+   "holds": false,
+   "mix_outage_coop": 0.31305841924398625
+  }
+ ],
+ "check2": {
+  "jiang_short_baseline": {
+   "n": 9,
+   "spearman_Kstar_vs_rel_loss": -0.5500190982169268
+  },
+  "jiang_massdep_baseline": {
+   "n": 8,
+   "spearman_Kstar_vs_rel_loss": 0.03802345503146868
+  },
+  "extraheavy_short_baseline": {
+   "n": 7,
+   "spearman_Kstar_vs_rel_loss": -0.2988071523335984
+  },
+  "rohcha_short_baseline": {
+   "n": 3,
+   "spearman_Kstar_vs_rel_loss": 0.9999999999999998
+  },
+  "rohcha_massdep_baseline": {
+   "n": 3,
+   "spearman_Kstar_vs_rel_loss": -0.9999999999999998
+  },
+  "liu_short_baseline": {
+   "n": 8,
+   "spearman_Kstar_vs_rel_loss": 0.6454972243679029
+  },
+  "liu_massdep_baseline": {
+   "n": 4,
+   "spearman_Kstar_vs_rel_loss": 1.0000000000000002
+  }
+ },
+ "check1_holds": "3 / 4",
+ "check2_negative": "3 / 7",
+ "meets_spec_with_every_day_outage": []
+}

@@ -1,0 +1,17 @@
+﻿series,verdict,surely_late,surely_over,allowance,worst_delay_lb_min
+speedliu_jiang_massdep_baseline_T270,unattainable,279,0,145,103.2
+speedliu_jiang_massdep_baseline_T300,unattainable,262,0,145,103.2
+speedliu_jiang_massdep_baseline_T380,unattainable,253,0,145,94.3
+speedliu_jiang_massdep_baseline_T550,unattainable,244,0,145,94.3
+speedliu_jiang_massdep_baseline_MX2,unattainable,244,0,145,94.3
+speedliu_rohcha_massdep_baseline_T270,unattainable,596,1,145,141.2
+speedliu_rohcha_massdep_baseline_T300,unattainable,571,1,145,141.2
+speedliu_rohcha_massdep_baseline_T380,unattainable,554,1,145,141.2
+speedliu_rohcha_massdep_baseline_T550,unattainable,471,1,145,131.2
+speedliu_rohcha_massdep_baseline_MX2,unattainable,471,1,145,131.2
+hand2.0_jiang_massdep_baseline_T270,open,89,0,145,35.6
+hand2.0_rohcha_massdep_baseline_T270,unattainable,963,0,145,63.6
+hand2.0_rohcha_massdep_baseline_T300,unattainable,944,0,145,63.6
+hand2.0_rohcha_massdep_baseline_T380,unattainable,915,0,145,63.6
+hand2.0_rohcha_massdep_baseline_T550,unattainable,692,0,145,53.6
+hand2.0_rohcha_massdep_baseline_MX2,unattainable,692,0,145,53.6

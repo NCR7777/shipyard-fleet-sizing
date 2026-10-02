@@ -1,0 +1,461 @@
+{
+ "levels": [
+  0.9,
+  0.98
+ ],
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119,
+  120,
+  121,
+  122,
+  123,
+  124,
+  125,
+  126,
+  127,
+  128,
+  129,
+  130
+ ],
+ "series": [
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "300",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_300",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "380",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_380",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "425",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_425",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "500",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "550",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 2,
+   "cell": "jiang_short_baseline",
+   "family": "L300_H500x1",
+   "hi_limit_98": 13,
+   "seed_offset": 80000,
+   "series": "T120_jiang_short_baseline_L300_H500x1",
+   "study": "delay_cap"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "L300_H500x2",
+   "hi_limit_98": 13,
+   "seed_offset": 80000,
+   "series": "T120_jiang_short_baseline_L300_H500x2",
+   "study": "delay_cap"
+  },
+  {
+   "K95": 5,
+   "K_min": 2,
+   "cell": "jiang_short_baseline",
+   "family": "MX1",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_MX1",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "jiang_short_baseline",
+   "family": "MX2",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "jiang_short_baseline_MX2",
+   "study": "main"
+  },
+  {
+   "K95": 9,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "300",
+   "hi_limit_98": 17,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_300",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "325",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_325",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "380",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_380",
+   "study": "main"
+  },
+  {
+   "K95": 7,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "425",
+   "hi_limit_98": 15,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_425",
+   "study": "main"
+  },
+  {
+   "K95": 7,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "500",
+   "hi_limit_98": 15,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 7,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "550",
+   "hi_limit_98": 15,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 9,
+   "K_min": 2,
+   "cell": "jiang_massdep_baseline",
+   "family": "MX1",
+   "hi_limit_98": 17,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_MX1",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "jiang_massdep_baseline",
+   "family": "MX2",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "jiang_massdep_baseline_MX2",
+   "study": "main"
+  },
+  {
+   "K95": 7,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "300",
+   "hi_limit_98": 15,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_300",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "380",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_380",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "425",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_425",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "500",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "550",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 7,
+   "K_min": 2,
+   "cell": "extraheavy_short_baseline",
+   "family": "MX1",
+   "hi_limit_98": 15,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_MX1",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "extraheavy_short_baseline",
+   "family": "MX2",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "extraheavy_short_baseline_MX2",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "rohcha_short_baseline",
+   "family": "500",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "rohcha_short_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "rohcha_short_baseline",
+   "family": "550",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "rohcha_short_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "rohcha_short_baseline",
+   "family": "MX2",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "rohcha_short_baseline_MX2",
+   "study": "main"
+  },
+  {
+   "K95": 17,
+   "K_min": 3,
+   "cell": "rohcha_massdep_baseline",
+   "family": "300",
+   "hi_limit_98": 25,
+   "seed_offset": 40000,
+   "series": "rohcha_massdep_baseline_300",
+   "study": "main"
+  },
+  {
+   "K95": 12,
+   "K_min": 3,
+   "cell": "rohcha_massdep_baseline",
+   "family": "500",
+   "hi_limit_98": 20,
+   "seed_offset": 40000,
+   "series": "rohcha_massdep_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 9,
+   "K_min": 3,
+   "cell": "rohcha_massdep_baseline",
+   "family": "550",
+   "hi_limit_98": 17,
+   "seed_offset": 40000,
+   "series": "rohcha_massdep_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "380",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "liu_short_baseline_380",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "425",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "liu_short_baseline_425",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "500",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "liu_short_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "550",
+   "hi_limit_98": 13,
+   "seed_offset": 40000,
+   "series": "liu_short_baseline_550",
+   "study": "main"
+  },
+  {
+   "K95": 5,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "L300_H425x2",
+   "hi_limit_98": 13,
+   "seed_offset": 80000,
+   "series": "T120_liu_short_baseline_L300_H425x2",
+   "study": "delay_cap"
+  },
+  {
+   "K95": 5,
+   "K_min": 4,
+   "cell": "liu_short_baseline",
+   "family": "L300_H425x3",
+   "hi_limit_98": 13,
+   "seed_offset": 80000,
+   "series": "T120_liu_short_baseline_L300_H425x3",
+   "study": "delay_cap"
+  },
+  {
+   "K95": 5,
+   "K_min": 5,
+   "cell": "liu_short_baseline",
+   "family": "L300_H425x4",
+   "hi_limit_98": 13,
+   "seed_offset": 80000,
+   "series": "T120_liu_short_baseline_L300_H425x4",
+   "study": "delay_cap"
+  },
+  {
+   "K95": 6,
+   "K_min": 3,
+   "cell": "liu_short_baseline",
+   "family": "MX2",
+   "hi_limit_98": 14,
+   "seed_offset": 40000,
+   "series": "liu_short_baseline_MX2",
+   "study": "main"
+  },
+  {
+   "K95": 10,
+   "K_min": 3,
+   "cell": "liu_massdep_baseline",
+   "family": "380",
+   "hi_limit_98": 18,
+   "seed_offset": 40000,
+   "series": "liu_massdep_baseline_380",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "liu_massdep_baseline",
+   "family": "425",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "liu_massdep_baseline_425",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "liu_massdep_baseline",
+   "family": "500",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "liu_massdep_baseline_500",
+   "study": "main"
+  },
+  {
+   "K95": 8,
+   "K_min": 3,
+   "cell": "liu_massdep_baseline",
+   "family": "550",
+   "hi_limit_98": 16,
+   "seed_offset": 40000,
+   "series": "liu_massdep_baseline_550",
+   "study": "main"
+  }
+ ],
+ "study": "service_level"
+}

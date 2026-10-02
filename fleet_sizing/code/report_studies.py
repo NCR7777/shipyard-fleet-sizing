@@ -1,13 +1,14 @@
 """Reports of the studies that finish after the main study: the heavy-block share study (directory `heavy_share`), the price
 of overweight-only coupling (PoR; overweight-only coupling runs, directory `overweight_only`) and the decision boundaries of the
-one-factor sensitivity study (directory `sensitivity`).
+one-factor sensitivity study (directory `sensitivity`), including the coupling-time axis between 0 and 10 min (directories
+`delta_axis`, `delta_axis_mix`).
 
 Counts come from analyse_study on each study (own-series runs, embedding, boundary check); pricing is the main grid of
 cost_decisions (5 price models x 9 r x 4 labour measures); a type without a qualifying count is not eligible in that setting.
 Search dependence as in cost_decisions.decisions: search-dependent if a losing type with K - 1 >= its floor would be
 cheaper at K - 1.
 
-  python report_studies.py heavy_share | overweight_only | sensitivity      -> results/E7_*.csv|md, R4R_*.csv|md, E5_*.csv|md
+  python report_studies.py heavy_share | overweight_only | sensitivity | e5d -> results/E7_*.csv|md, R4R_*.csv|md, E5_*.csv|md, delta_axis_*.csv|md
   python report_studies.py selfcheck
 """
 import csv
@@ -156,7 +157,7 @@ def overweight_only():
 SENS_FACTORS = {   # ordered levels including the baseline ('base')
     'coupling time (min)': [('delta0', 0), ('base', 10), ('delta20', 20), ('delta30', 30), ('delta40', 40)],
     'handling factor': [('hand0.5', 0.5), ('hand0.67', 0.67), ('base', 1), ('hand1.5', 1.5), ('hand2.0', 2.0)],
-    'speed factor': [('speedL22', 'Liu 50/30 m/min'), ('speed0.5', 0.5), ('speed0.75', 0.75), ('base', 1)],
+    'speed factor': [('speedliu', 'Liu 50/30 m/min'), ('speed0.5', 0.5), ('speed0.75', 0.75), ('base', 1)],
     'largest team': [('team2', 2), ('base', 3)],
     'turn time (s)': [('base', 0), ('tau30', 30)],
     'coupled-turn time (s)': [('base', 0), ('dtau30', 30), ('dtau60', 60)],
@@ -202,10 +203,94 @@ def sensitivity():
                              nearest=' | '.join('%s: %d' % kv for kv in sorted(ch.items()))))
     write(RES / 'sensitivity_boundaries.csv', rows)
     write(RES / 'sensitivity_boundary_summary.csv', summ)
-    L = ['# Decision boundaries of the one-factor sensitivity study', '', '| factor | direction | settings | winner changes | first change |',
+    L = ['# Decision boundaries of the one-factor sensitivity study', '',
+         '| factor | direction | settings | winner changes | first change |',
          '| --- | --- | --- | --- | --- |'] + ['| %s | %s | %d | %d | %s |' % (x['factor'], x['direction'], x['settings'], x['changed'], x['nearest'] or '—')
                                                for x in summ if not (x['settings'] == 0)]
+    L += e5_levels(lev, cells)
     (RES / 'sensitivity_summary.md').write_text('\n'.join(L) + '\n', encoding='utf8')
+    print('\n'.join(L))
+
+
+def e5_levels(lev, cells):
+    """Cheapest fleet and its coupled share at every level of every factor (main grid) -> results/sensitivity_levels.csv;
+    returns the summary table: settings with a cheapest fleet, those coupling at most one block in ten, and under
+    shift staffing the settings whose winner differs from the baseline and the largest coupled share of a winner."""
+    coop = {('base', r['cell'], r['family']): float(r['coop_share']) for r in rcsv(RES / 'main_fleets.csv')
+            if r['cell'] in cells and r['family'] in SENS_TYPES}
+    coop.update({(r['series'].split('_')[0], r['cell'], r['family']): float(r['coop_share'])
+                 for r in rcsv(RES / 'sensitivity_fleets.csv') if r['K_final'] not in ('', 'None')})
+    rows = []
+    for fac, levels in SENS_FACTORS.items():
+        for k, val in levels:
+            for m in C.MAIN_MODELS:
+                P = C.proxy(m)
+                for cell in cells:
+                    for r in RS:
+                        for lab in C.LAB4:
+                            w = decide(cell, lev.get(k, {}).get(cell, {}), P, r, lab)[0]
+                            b = decide(cell, lev['base'][cell], P, r, lab)[0]
+                            rows.append(dict(factor=fac, level=k, value=val, cell=cell, model=C.mname(m), r=round(r, 3),
+                                             labour=lab, winner=w or '', base_winner=b, coop_share=coop[k, cell, w] if w else ''))
+    write(RES / 'sensitivity_levels.csv', rows)
+    L = ['', '## Cheapest fleet at each level', '',
+         '| factor | level | settings with a cheapest fleet | coupling <= 10% | shift: winner changed | shift: largest coupled share |',
+         '| --- | --- | ---: | ---: | ---: | ---: |']
+    for fac, levels in SENS_FACTORS.items():
+        for k, val in levels:
+            g = [x for x in rows if x['factor'] == fac and x['level'] == k]
+            won = [x for x in g if x['winner']]
+            sh = [x for x in won if x['labour'] == 'shift_h']
+            L.append('| %s | %s | %d / %d | %d | %d | %.1f%% |' % (fac, val, len(won), len(g), sum(x['coop_share'] <= 0.10 for x in won),
+                                                              sum(x['winner'] != x['base_winner'] for x in sh),
+                                                              100 * max(x['coop_share'] for x in sh)))
+    return L
+
+
+def delta_axis():
+    """The coupling-time axis in `jiang_short_baseline` with the same six fleets at every level (the five fleets of the
+    one-factor sensitivity study and `MX1`, the main-grid winner of that condition under shift staffing): delta = 0,
+    20, 30, 40 min from directory `sensitivity` plus `MX1` from directory `delta_axis_mix`; 2.5 and 5 min from directory `delta_axis`; 10 min
+    from the main study. Cheapest fleet and its coupled share over the main grid. The turning point is reported as the
+    interval between the largest delta at which the 300 t tier is cheapest in some shift-staffing setting and the next
+    tested delta. -> `results/delta_axis_levels.csv`, `delta_axis_summary.md`"""
+    cell, fams = 'jiang_short_baseline', SENS_TYPES + ('MX1',)
+    study_fleets('delta_axis')
+    study_fleets('delta_axis_mix')
+    lev, coop = {}, {}
+    on_axis = lambda k: float(k[len('delta'):]) if k.startswith('delta') else None
+    for f in ('sensitivity_fleets.csv', 'delta_axis_fleets.csv', 'delta_axis_mix_fleets.csv'):
+        for r in rcsv(RES / f):
+            d = on_axis(r['series'].split('_')[0])
+            if d is not None and r['cell'] == cell and r['family'] in fams and r['K_final'] not in ('', 'None'):
+                lev.setdefault(d, {})[r['family']] = fleet_row(r)
+                coop[d, r['family']] = float(r['coop_share'])
+    for r in rcsv(RES / 'main_fleets.csv'):
+        if r['cell'] == cell and r['family'] in fams:
+            lev.setdefault(10.0, {})[r['family']] = fleet_row(r)
+            coop[10.0, r['family']] = float(r['coop_share'])
+    rows = []
+    for d in sorted(lev):
+        for m in C.MAIN_MODELS:
+            P = C.proxy(m)
+            for r in RS:
+                for lab in C.LAB4:
+                    w = decide(cell, lev[d], P, r, lab)[0]
+                    rows.append(dict(delta_min=d, candidates=' '.join(sorted(lev[d])), model=C.mname(m), r=round(r, 3),
+                                     labour=lab, winner=w, coop_share=coop[d, w]))
+    write(RES / 'delta_axis_levels.csv', rows)
+    L = ['# Coupling time between 0 and 10 min (Jiang masses, short handling, baseline due dates)', '',
+         '| delta (min) | candidates | shift: cheapest fleets (coupled share) | all labour: coupling <= 10% |', '| --- | --- | --- | --- |']
+    for d in sorted(lev):
+        g = [x for x in rows if x['delta_min'] == d]
+        sh = Counter(x['winner'] for x in g if x['labour'] == 'shift_h')
+        L.append('| %g | %s | %s | %d / %d |' % (d, g[0]['candidates'], ', '.join('%s %d (%.1f%%)' % (w, n, 100 * coop[d, w]) for w, n in sh.most_common()),
+                                                sum(x['coop_share'] <= 0.10 for x in g), len(g)))
+    won = [d for d in sorted(lev) if any(x['delta_min'] == d and x['labour'] == 'shift_h' and x['winner'] == '300' for x in rows)]
+    nxt = [d for d in sorted(lev) if won and d > max(won)]
+    L += ['', 'Shift staffing: the 300 t tier is cheapest in some setting at delta = %s min; turning interval: %s.'
+          % (', '.join('%g' % d for d in won) or 'none', ('%g to %g min' % (max(won), nxt[0])) if won and nxt else 'not bracketed')]
+    (RES / 'delta_axis_summary.md').write_text('\n'.join(L) + '\n', encoding='utf8')
     print('\n'.join(L))
 
 
@@ -223,4 +308,4 @@ def selfcheck():
 
 
 if __name__ == '__main__':
-    {'heavy_share': heavy_share, 'overweight_only': overweight_only, 'sensitivity': sensitivity, 'selfcheck': selfcheck}[sys.argv[1]]()
+    {'heavy_share': heavy_share, 'overweight_only': overweight_only, 'sensitivity': sensitivity, 'delta-axis': delta_axis, 'selfcheck': selfcheck}[sys.argv[1]]()

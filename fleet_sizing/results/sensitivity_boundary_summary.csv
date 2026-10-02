@@ -1,0 +1,13 @@
+﻿factor,direction,settings,changed,nearest
+coupling time (min),below,720,160,between 10 and 0: 160
+coupling time (min),above,720,15,between 10 and 20: 6 | between 20 and 30: 3 | between 30 and 40: 6
+handling factor,below,720,163,between 0.67 and 0.5: 120 | between 1 and 0.67: 43
+handling factor,above,720,286,between 1 and 1.5: 102 | between 1.5 and 2.0: 184
+speed factor,below,720,540,between 0.5 and Liu 50/30 m/min: 281 | between 0.75 and 0.5: 33 | between 1 and 0.75: 226
+speed factor,above,720,0,
+largest team,below,720,3,between 3 and 2: 3
+largest team,above,720,0,
+turn time (s),below,720,0,
+turn time (s),above,720,12,between 0 and 30: 12
+coupled-turn time (s),below,720,0,
+coupled-turn time (s),above,720,4,between 0 and 30: 3 | between 30 and 60: 1
