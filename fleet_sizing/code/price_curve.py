@@ -1,6 +1,4 @@
-"""Price curve and price ratio r: price-capacity calibration. Data: the 33 A-class records of
-`earlier_study/data/price_sources_R24.md` (award price and unit count verified), parsed from its
-table; buyer = the 'buyer' column (end user) for clustering.
+"""Price-capacity calibration from the released table results/price_sources.csv.
 
 Fits (all on unit prices; VAT removed by dividing by 1.13 unless stated):
   power law ln P = a + alpha ln Q: all 33; 200-550 t (the modelled tier range), OLS / HC3 /
@@ -26,26 +24,10 @@ VAT = 1.13
 
 
 def records():
-    md = ROOT / 'earlier_study/data/price_sources_R24.md'
-    if not md.exists():      # public release: Supplementary Table S1, whose buyer_cluster codes sort as the buyer names do
-        import csv
-        return [dict(id=r['id'], Q=int(r['capacity_t']), unit=float(r['award_total_CNY_incl_VAT'].replace(',', '')) / int(r['quantity']),
-                     qty=int(r['quantity']), buyer=r['buyer_cluster'])
-                for r in csv.DictReader(open(OUT / 'S1_price_sources.csv', encoding='utf-8-sig'))]
-    t = md.read_text(encoding='utf8')
-    sec = t[t.index('### 1.1 A 类'):t.index('### 1.2')]
-    out = []
-    for line in sec.splitlines():
-        if not line.startswith('| A'):
-            continue
-        c = [x.strip() for x in line.strip().strip('|').split('|')]
-        rid = re.match(r'A\d\d', c[0]).group(0)
-        q = int(re.search(r'(\d+)', c[1]).group(1))
-        total = float(c[3].replace(',', ''))
-        qty = int(re.search(r'(\d+)', c[5].replace('一', '1')).group(1)) if re.search(r'\d', c[5]) else 1
-        buyer = re.sub(r'（.*?）|\(.*?\)', '', c[8]).replace('招标人：', '').strip()
-        out.append(dict(id=rid, Q=q, unit=total / qty, qty=qty, buyer=buyer))
-    return out
+    import csv
+    return [dict(id=r['id'], Q=int(r['capacity_t']), unit=float(r['award_total_CNY_incl_VAT'].replace(',', '')) / int(r['quantity']),
+                 qty=int(r['quantity']), buyer=r['buyer_cluster'])
+            for r in csv.DictReader(open(OUT / 'price_sources.csv', encoding='utf-8-sig'))]
 
 
 def ols(x, y):

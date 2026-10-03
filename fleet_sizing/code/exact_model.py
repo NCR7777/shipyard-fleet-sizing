@@ -1,7 +1,6 @@
 """Exact arm of the exact comparison on single-batch instances.
 
-Fewest late blocks of one fixed fleet on one slice under a hard delay cap T. Based on exact_ontime.OnTime
-(`earlier_study/code`), changed as in bounds_cpsat: every block is served by exactly one minimal
+Fewest late blocks of one fixed fleet on one slice under a hard delay cap T. Every block is served by exactly one minimal
 feasible team (core.minimal_teams, flex, kappa = 3); start s_i in [r_i, d_i + T - D_i - delta*coop_i];
 o_i = 1 only if the block completes by d_i; maximise sum o_i. One circuit per transporter (first K
 start positions), precedence on used arcs, arcs pruned by the capped latest start, redundant
@@ -299,7 +298,6 @@ def selfcheck(det_time=60.0):
                'fewest late blocks {value: count} = %s (None = no capped schedule); route bound <= optimum in all, '
                'equal in %d' % (dict(sorted(outcome.items())), tight))
     # 2 degeneracy on 7-block sub-slices
-    sys.path.insert(0, str(ROOT / 'earlier_study' / 'code'))
     import exact_ontime as XO
     import bounds_cpsat as BOUNDS
     na = nb = 0

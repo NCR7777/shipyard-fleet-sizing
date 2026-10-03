@@ -1,0 +1,177 @@
+{
+  "vehicle_time": {
+    "main": {
+      "scope": "main study only",
+      "series": 384,
+      "selection": "outside heavy-tail profile; coupled-block share > 0.01; extra working time > 0",
+      "sync_share_all": {
+        "n": 384,
+        "median": 0.005505142055573937,
+        "p10": 0.0,
+        "p90": 0.01080626902234724,
+        "min": 0.0,
+        "max": 0.022109730874896233
+      },
+      "pairs": 266,
+      "occupancy_share": {
+        "n": 266,
+        "median": 0.8980273802273782,
+        "p10": 0.7750017481582637,
+        "p90": 0.9384151806579677,
+        "min": 0.5122675576254603,
+        "max": 2.1949074074073964
+      },
+      "waiting_share": {
+        "n": 266,
+        "median": 0.02141439452930603,
+        "p10": 0.013168739765064124,
+        "p90": 0.03241644875486854,
+        "min": 0.0013547258966240937,
+        "max": 0.056861171615269636
+      },
+      "corr_h_occ_vs_rel_work": 0.9613324093098958
+    },
+    "main_and_additional_mixes": {
+      "pairs": 275,
+      "occupancy_share": {
+        "n": 275,
+        "median": 0.8952901498024466,
+        "p10": 0.7600350650549033,
+        "p90": 0.9381788307499006,
+        "min": 0.3723192374719918,
+        "max": 2.1949074074073964
+      },
+      "waiting_share": {
+        "n": 275,
+        "median": 0.021564975870830016,
+        "p10": 0.013337470492321918,
+        "p90": 0.033015725755340564,
+        "min": 0.0013547258966240937,
+        "max": 0.056861171615269636
+      },
+      "corr_h_occ_vs_rel_work": 0.9614104962572634
+    },
+    "additional_pairs": 9
+  },
+  "search_depth": {
+    "decisions_per_level": 6480,
+    "labour_measures": [
+      "shift_h",
+      "crew_veh_h",
+      "crew_team_h",
+      "shift_ot_h"
+    ],
+    "scope": "K-only repricing; working-time and overtime terms retained from final schedules",
+    "levels": {
+      "cp0": {
+        "agree": 5025,
+        "single_carry": 5843,
+        "decisions": 6480,
+        "agreement_pct": 77.54629629629629,
+        "single_carry_pct": 90.16975308641975
+      },
+      "cp100": {
+        "agree": 5257,
+        "single_carry": 5756,
+        "decisions": 6480,
+        "agreement_pct": 81.12654320987654,
+        "single_carry_pct": 88.82716049382717
+      },
+      "cp300": {
+        "agree": 5792,
+        "single_carry": 5784,
+        "decisions": 6480,
+        "agreement_pct": 89.38271604938272,
+        "single_carry_pct": 89.25925925925925
+      },
+      "single": {
+        "agree": 6159,
+        "single_carry": 5883,
+        "decisions": 6480,
+        "agreement_pct": 95.04629629629629,
+        "single_carry_pct": 90.78703703703704
+      }
+    },
+    "main_winners_reproduced": 6480
+  },
+  "slow_handling": {
+    "decisions_reproduced": 3600,
+    "resolved": 3060,
+    "unresolved": 540,
+    "max_coupling_pct": 6.219931271477663,
+    "max_coupling_decisions": 17,
+    "all_resolved_couple_at_most_10pct": true,
+    "max_coupling_pct_by_level": {
+      "speedliu": 1.718213058419244,
+      "speed0.5": 2.2336769759450172,
+      "speed0.75": 6.219931271477663,
+      "hand1.5": 1.2714776632302405,
+      "hand2.0": 2.302405498281787
+    }
+  },
+  "exact_greedy": {
+    "proven_fleets": 56,
+    "count_differences": {
+      "1": 35,
+      "0": 6,
+      "2": 14,
+      "no_count": 1
+    },
+    "no_count_rows": [
+      {
+        "series": "exact_liu_massdep_baseline_MX1",
+        "cell": "liu_massdep_baseline",
+        "family": "MX1",
+        "floor": "2",
+        "ceiling": "10",
+        "K_lb": "9",
+        "K_ub": "9",
+        "exact": "True",
+        "K_final": "9",
+        "K_single": "9",
+        "K_cp0": "9",
+        "K_cp100": "9",
+        "K_cp300": "9",
+        "K_greedy": "",
+        "d_final": "0",
+        "d_single": "0",
+        "d_cp0": "0",
+        "d_cp100": "0",
+        "d_cp300": "0",
+        "d_greedy": "",
+        "boundary_checked": "True"
+      }
+    ]
+  },
+  "delay_cap": {
+    "cost_pairs_reproduced": 135,
+    "min_increase_pct": 0.0,
+    "max_increase_pct": 1.847865403309057,
+    "maximum_row": {
+      "level": "120",
+      "cell": "uniform_short_baseline",
+      "model": "power_0.96",
+      "r": "30.0",
+      "labour": "shift_h",
+      "winner": "L300_H500x2",
+      "K": "5",
+      "fleet": "300 300 300 500 500",
+      "coop": "0.05463917525773196",
+      "cost": "527.9854250328103",
+      "cost_vs_inf": "0.01847865403309057"
+    },
+    "no_cap_row": {
+      "level": "inf",
+      "cell": "uniform_short_baseline",
+      "model": "power_0.96",
+      "r": "30.0",
+      "labour": "shift_h",
+      "winner": "MX2",
+      "K": "5",
+      "fleet": "270 270 270 500 500",
+      "coop": "0.10240549828178694",
+      "cost": "518.4059802746302",
+      "cost_vs_inf": "0.0"
+    }
+  }
+}

@@ -125,17 +125,15 @@ def write(rows, path):
 
 
 def selfcheck():
-    EARLIER = ROOT / 'earlier_study' / 'results'
-    fl = load(EARLIER / 'cost_fleets_tmax120' / 'known_cost_fleets.csv')
-    rows = decisions(fl, OLD_MODELS, (5, 10, 20, 40, 85), LAB3)
-    with open(EARLIER / 'reference_decisions_tmax120.csv', encoding='utf-8-sig') as f:
-        ref = {(r['cell'], float(r['alpha']), int(r['r']), r['labour']): r['ref_winner'] for r in csv.DictReader(f)}
-    mine = {(x['cell'], float(x['model'].split('_')[1]), int(x['r']), x['labour']): x['winner'] for x in rows}
-    assert len(mine) == len(ref) == 1620, (len(mine), len(ref))
-    diff = [k for k in ref if ref[k] != mine[k]]
-    assert not diff, diff[:5]
-    dep = sum(x['status'] == 'search-dependent' for x in rows)
-    print('self-check: 1,620 ten-instance reference winners reproduced; search-dependent on those counts: %d' % dep)
+    rows = decisions(load(RES / 'main_fleets.csv'), MAIN_MODELS, main_r(), LAB4)
+    with open(RES / 'main_decisions.csv', encoding='utf-8-sig') as handle:
+        reference = list(csv.DictReader(handle))
+    key = lambda r: (r['cell'], r['model'], round(float(r['r']), 8), r['labour'])
+    lookup = {key(r): r for r in reference}
+    assert len(rows) == len(lookup) == 6480
+    assert all(r['winner'] == lookup[key(r)]['winner'] and
+               abs(r['margin'] - float(lookup[key(r)]['margin'])) < 1e-12 for r in rows)
+    print('self-check: all 6,480 main winners and margins reproduced')
 
 
 if __name__ == '__main__':
@@ -146,11 +144,9 @@ if __name__ == '__main__':
     prefix = sys.argv[2]
     proven = frozenset(tuple(x) for x in json.loads(Path(sys.argv[3]).read_text(encoding='utf8'))) if len(sys.argv) > 3 else frozenset()
     main_rows = decisions(fl, MAIN_MODELS, main_r(), LAB4 if all(v['after_h'] is not None for v in fl.values()) else LAB3, proven)
-    old_rows = decisions(fl, OLD_MODELS, (5, 10, 20, 40, 85), LAB3, proven)
     write(main_rows, RES / ('%s_decisions.csv' % prefix))
-    write(old_rows, RES / ('%s_decisions_old_grid.csv' % prefix))
     summ = {}
-    for name, rows in (('main', main_rows), ('old', old_rows)):
+    for name, rows in (('main', main_rows),):
         summ[name] = dict(decisions=len(rows), search_dependent=sum(x['status'] == 'search-dependent' for x in rows),
                           min_margin_pct=round(100 * min(x['margin'] for x in rows), 2))
     shift = {(x['cell'], x['model'], x['r']): x['winner'] for x in main_rows if x['labour'] == 'shift_h'}

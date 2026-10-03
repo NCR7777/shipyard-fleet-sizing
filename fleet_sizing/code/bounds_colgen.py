@@ -26,7 +26,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
-sys.path.insert(0, str(ROOT / 'earlier_study' / 'code'))
 for sub in ('common', 'search', 'instances'):
     sys.path.insert(0, str(ROOT / 'paper' / 'code' / sub))
 from ortools.linear_solver import pywraplp      # noqa: E402

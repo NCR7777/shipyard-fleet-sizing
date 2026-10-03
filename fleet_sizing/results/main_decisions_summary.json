@@ -4,11 +4,6 @@
   "search_dependent": 5033,
   "min_margin_pct": 0.0
  },
- "old": {
-  "decisions": 1620,
-  "search_dependent": 1283,
-  "min_margin_pct": 0.0
- },
  "after_shift_changed": 67,
  "after_shift_of": 1620
 }

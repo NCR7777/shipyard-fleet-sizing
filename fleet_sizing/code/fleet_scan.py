@@ -97,7 +97,8 @@ def write_series(study, specs):
 
 def prepare_main(study):
     _paper_path()
-    known = json.loads((ROOT / 'earlier_study/results/pooled_counts_tmax120.json').read_text(encoding='utf8'))
+    known = [dict(cell=s['cell'], family=s['family'], K_known=s['K_start'])
+             for s in json.loads((STUDY_ROOT / 'main/series.json').read_text(encoding='utf8'))]
     specs, bases = [], {}
     for o in known:
         cell, fam = o['cell'], o['family']
@@ -113,7 +114,6 @@ def prepare_main(study):
 
 def prepare_delay_cap(study):
     _paper_path()
-    sys.path.insert(0, str(ROOT / 'earlier_study' / 'code'))
     levels = [('inf', None), ('480', 480), ('240', 240), ('120', 120), ('60', 60), ('30', 30)]
     heavy = {'jiang_short_baseline': 500, 'uniform_short_baseline': 500, 'liu_short_baseline': 425}
     fams = {}

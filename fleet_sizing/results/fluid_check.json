@@ -1,0 +1,151 @@
+{
+ "kappa_425_vs_270_pct": [
+  3.42,
+  14.8
+ ],
+ "kappa_550_vs_300_pct": [
+  5.32,
+  22.48
+ ],
+ "r_range": [
+  5.1,
+  30.0
+ ],
+ "main_fluid": {
+  "pairs": 9450,
+  "fleet_pairs": 210,
+  "conditions": 30,
+  "pearson": 0.9609,
+  "median_understatement_pct": 6.16,
+  "median_sim_over_fluid_minus1_pct": 6.56,
+  "share_separated_10pct": 85.39,
+  "correct_ranking_separated_pct": 99.23,
+  "correct_ranking_within_10pct": 53.44
+ },
+ "w_bar_covering_min": {
+  "min": 42.55,
+  "max": 84.57,
+  "short": [
+   42.6,
+   42.9
+  ],
+  "massdep": [
+   63.2,
+   84.6
+  ],
+  "long": [
+   79.3,
+   80.2
+  ]
+ },
+ "occupancy_factor": {
+  "short": [
+   1.466,
+   1.47
+  ],
+  "H2H3": [
+   1.236,
+   1.317
+  ]
+ },
+ "coupling_budget_range_pct": [
+  2.33,
+  18.18
+ ],
+ "light_tiers_coupled_share_pct": [
+  5.3,
+  100.0
+ ],
+ "K_rho_pricing": {
+  "decisions": 1620,
+  "single_carry_share_K_rho_pct": 91.98,
+  "single_carry_share_K_star_pct": 91.05,
+  "same_winner_pct": 57.65
+ },
+ "envelope_outside_heavy_tail": {
+  "combinations": 600,
+  "all_single_up_to_r": 8.74,
+  "share_at_r30_pct": 98.33,
+  "share_at_r5000_pct": 82.0,
+  "no_switch_pct": 82.0,
+  "switch_above_r30_pct": 90.74,
+  "median_switch_r": 87.0,
+  "switches_inside_calibrated_range": [
+   [
+    "jiang_long_tight",
+    "affine",
+    "crew_team_h",
+    10.87
+   ],
+   [
+    "jiang_long_tight",
+    "piecewise",
+    "crew_team_h",
+    10.01
+   ],
+   [
+    "jiang_long_tight",
+    "power_0.72",
+    "crew_team_h",
+    15.52
+   ],
+   [
+    "jiang_long_tight",
+    "power_0.84",
+    "crew_team_h",
+    11.45
+   ],
+   [
+    "jiang_long_tight",
+    "power_0.96",
+    "crew_team_h",
+    8.77
+   ],
+   [
+    "uniform_short_baseline",
+    "affine",
+    "crew_team_h",
+    29.22
+   ],
+   [
+    "uniform_short_baseline",
+    "piecewise",
+    "crew_team_h",
+    24.75
+   ],
+   [
+    "uniform_short_baseline",
+    "power_0.84",
+    "crew_team_h",
+    25.21
+   ],
+   [
+    "uniform_short_baseline",
+    "power_0.96",
+    "crew_team_h",
+    18.38
+   ],
+   [
+    "uniform_short_tight",
+    "power_0.96",
+    "crew_team_h",
+    22.3
+   ]
+  ]
+ },
+ "heavy_share_300_vs_550": {
+  "comparisons": 630,
+  "correct_ranking_pct": 94.44,
+  "pearson": 0.9469,
+  "light_cheaper_pct": 46.83,
+  "within_budget_share_by_p": {
+   "0.00": 100.0,
+   "0.02": 100.0,
+   "0.05": 86.7,
+   "0.10": 41.1,
+   "0.20": 1.1,
+   "0.35": 0.0,
+   "0.50": 0.0
+  }
+ }
+}

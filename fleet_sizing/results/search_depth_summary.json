@@ -1,0 +1,41 @@
+{
+  "decisions_per_level": 6480,
+  "labour_measures": [
+    "shift_h",
+    "crew_veh_h",
+    "crew_team_h",
+    "shift_ot_h"
+  ],
+  "scope": "K-only repricing; working-time and overtime terms retained from final schedules",
+  "levels": {
+    "cp0": {
+      "agree": 5025,
+      "single_carry": 5843,
+      "decisions": 6480,
+      "agreement_pct": 77.54629629629629,
+      "single_carry_pct": 90.16975308641975
+    },
+    "cp100": {
+      "agree": 5257,
+      "single_carry": 5756,
+      "decisions": 6480,
+      "agreement_pct": 81.12654320987654,
+      "single_carry_pct": 88.82716049382717
+    },
+    "cp300": {
+      "agree": 5792,
+      "single_carry": 5784,
+      "decisions": 6480,
+      "agreement_pct": 89.38271604938272,
+      "single_carry_pct": 89.25925925925925
+    },
+    "single": {
+      "agree": 6159,
+      "single_carry": 5883,
+      "decisions": 6480,
+      "agreement_pct": 95.04629629629629,
+      "single_carry_pct": 90.78703703703704
+    }
+  },
+  "main_winners_reproduced": 6480
+}

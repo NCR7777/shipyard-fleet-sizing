@@ -1,22 +1,17 @@
-"""Service lost when one transporter is out of service (fleets of the fresh-day confirmation set at their K* in the
-main results, main days 101-130).
+"""Service sensitivity to removing one unit from a capacity class.
 
-For each fleet the outage variants in the design file `supplementary_outage/design/outage_service.json` are evaluated: a light (or, in
-homogeneous fleets, any) unit out, and for mixes a heavy unit out. A variant is another fleet family at count K* - 1
-(lower counts of that family embed into it), so most of its runs are already stored in the main study and the
-delay-cap study (directories `main`, `delay_cap`); the missing ones are run here with that family's own series definition and
-seed offset, i.e. exactly as its scan would have produced them.
+For the 42 contending fleets on the main days, a reduced variant is another fleet
+family at K*-1, with that family's prefix start locations and capacity assignment.
+Stored runs are reused and missing runs use the same family-specific scan settings.
+Individual survivor identities and their original starts are not retained.
 
-Per day the best stored or new schedule is taken (most blocks on time among schedules with no block over the cap; a
-day without such a schedule keeps its best uncapped schedule and is flagged). Reported per fleet: pooled on-time share
-nominally and with the worst unit out on every day, days without a capped schedule, coupled-block share on outage
-days, and P(specification met) when each day independently loses the worst unit with probability q (Monte Carlo).
+Per-day service and random-day probabilities concern the worst reduced-composition
+variant, not deletion of every actual individual vehicle. Existing output labels
+such as 'worst unit out' retain the capacity-class meaning documented here.
 
-  python outage_service.py prepare                  # -> outage/series.json, outage/jobs.json, outage/base (only the missing runs)
-  pypy   outage_service.py run [workers]            # restartable
-  python outage_service.py analyse [--preliminary]  # -> results/outage_service_fleets.csv, outage_service_report.json, outage_service_report.md
-                                               #    (`S7bp_*`: stored runs of the main results only, fleets with
-                                               #    missing runs flagged)
+Run: python outage_service.py prepare / run [workers] / analyse
+Outputs: outage_service_fleets.csv, outage_service_report.json and .md.
+Protected main-yard instances are required to regenerate missing schedules.
 """
 import json
 import math

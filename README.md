@@ -1,13 +1,15 @@
-# Service-constrained sizing and composition of shipyard block-transporter fleets: code and data
+# Single-vehicle capacity versus cooperative transport in shipyard block-transporter fleets: code and data
 
-This repository accompanies the manuscript "Service-constrained sizing and composition of shipyard block-transporter
-fleets with cooperative lifting". It contains the scheduling, sizing and pricing code, the result tables of every
+This repository accompanies the manuscript "Single-vehicle capacity versus cooperative transport in the
+service-constrained sizing of shipyard block-transporter fleets". It contains the scheduling, sizing and pricing code, the result tables of every
 study, the run-level results of all 214,210 scheduling runs (one row per run) and the transporter price sources.
 
-The digitised road network of the main shipyard, the instances generated on it and the individual schedules are not
-released, because travel times reveal the facility layout; they are available to reviewers on request. Scripts that
-need them are included so that every computation can be read, and are marked "main-yard instances" below. The second
-case uses published data and can be rerun end to end.
+The digitised road network of the main shipyard and the individual schedules are not released, nor are the instances
+generated on it apart from their block masses, because travel times reveal the facility layout; they are available to
+reviewers on request. The block masses of the main study and of the heavy-block share study are in
+`fleet_sizing/results/runs_compact/tasks_main.csv` and `tasks_heavy_share.csv` (condition, day, block, mass). Scripts that need the
+rest of the instances are included so that every computation can be read, and are marked "main-yard instances" below.
+The second case uses published data and can be rerun end to end.
 
 ## Environment
 
@@ -39,12 +41,12 @@ fleet series of the main study (`fleet_sizing/main/series.json`).
 | `unresolved_scan`, `candidates_speed`, `candidates_handling` | Slow speed and long handling: unresolved series scanned up to 40 transporters; 425 t, 500 t and light-heavy mixes added at slow speeds and at long handling | 5.5 |
 | `extended_mixes` | Extended light-heavy mixes in 13 further conditions | 5.3 |
 | `fresh_days` | 30 fresh days for the 42 contending fleets | 5.5 |
-| `outage` | Service lost with one transporter out | 5.4 |
+| `outage` | Service after reducing the capacity composition and reassigning starts | 5.4 |
 | `service90`, `service98` | On-time targets of 90% and 98% | 5.4 |
 | `boundary_search` | Six more searches per day at one transporter below the count found | 5.5 |
 | `robust` | Robust sizing under handling-time noise | 5.5 |
 | `exact` | Exact benchmark on single-batch slices | 5.5 |
-| `tier_speeds`, `tier_speeds_jiang` | Tier-specific speeds | 6 (limitations) |
+| `tier_speeds`, `tier_speeds_jiang` | Tier-specific speeds | 5.6, 6 |
 | `second_case` | Second case on the published data of Liu et al. (2022) | 5.5 |
 
 ## Run tables
@@ -80,22 +82,23 @@ the heavy blocks' share of handling time.
 
 | Paper item | Script | Data | Rerun without main-yard instances |
 | --- | --- | --- | --- |
-| Table 3: price curves, exponent, lack of fit; price ratio r | `price_curve.py` (reads the price-source table when the authors' working record is absent), `make_supplementary.py` | `results/S1_price_sources.csv`, `results/S2_price_ratio.csv`, `results/price_curve.json` | Yes |
-| Fig. 3: transporters needed by tier | `fleet_scan.py run main`, `analyse_study.py main`; figure `paper/manuscript/scripts/fig3_tradeoff.py` | `results/main_fleets.csv` | Counts: main-yard instances. Figure: yes |
-| Section 5.1, Table 5, Fig. 4: least-cost fleets, single-carry shares, margins | `cost_decisions.py ../results/main_fleets.csv main`, `decision_strength.py`; figure `paper/manuscript/scripts/fig4_winners.py` | `results/main_fleets.csv`, `results/main_decisions.csv`, `results/claim_numbers.json` | Yes |
-| Section 5.2: vehicle-time decomposition (coupled occupancy, waiting, occupancy per block) | `supplementary/vehicle_time.py main 8 --with-r3` | `results/vehicle_time_summary.json`, `results/vehicle_time_series.csv`, `results/vehicle_time_pairs.csv` | Main-yard instances; tables given |
-| Fig. 5: transporter-hours against coupled share; counts beyond the workload rule | `paper/manuscript/scripts/fig5_occupancy.py`; workload rule in `report_main.py` | `results/main_fleets.csv`, `results/main_load_rule.csv` | Figure: yes. Workload rule: main-yard instances |
-| Fig. 6: winners as r varies far beyond its calibrated range | `paper/manuscript/scripts/fig6_breakeven.py` | `results/main_fleets.csv` | Yes |
-| Fig. 7, heavy-block share regimes | `fleet_scan_studies.py run heavy_share`, `report_studies.py heavy_share`; figure `paper/manuscript/scripts/fig7_regimes.py` | `results/heavy_share_fleets.csv`, `results/heavy_share_decisions.csv`, `results/heavy_share_thresholds.csv` | Counts: main-yard instances. Tables and figure: yes |
+| Table 3 and the price tables of the Supplementary Material: price curves, exponent, lack of fit; capital-to-labour ratio (theta in the paper, `r` in the code and tables) | `price_curve.py` (reads the price-source table when the authors' working record is absent), `make_supplementary.py` | `results/price_sources.csv`, `results/price_ratio.csv`, `results/price_curve.json` | Yes |
+| Fig. 4: transporters needed by tier | `fleet_scan.py run main`, `analyse_study.py main`; figure `paper/manuscript/scripts/fig3_tradeoff.py` | `results/main_fleets.csv` | Counts: main-yard instances. Figure: yes |
+| Section 5.1, Table 5, Fig. 5: least-cost fleets, single-carry shares, margins | `cost_decisions.py ../results/main_fleets.csv main`, `decision_strength.py`; figure `paper/manuscript/scripts/fig4_winners.py` | `results/main_fleets.csv`, `results/main_decisions.csv`, `results/claim_numbers.json` | Yes |
+| Section 5.2: vehicle-time decomposition (coupled occupancy, waiting, occupancy per block) | `supplementary/vehicle_time.py main 8`; `claim_checks.py` for the reported main-study subset | `results/vehicle_time_summary.json`, `results/vehicle_time_series.csv`, `results/vehicle_time_pairs.csv`, `results/vehicle_time_main_summary.json`, `results/vehicle_time_main_pairs.csv` | Main-yard instances; tables given |
+| Fig. 6: transporter-hours against coupled share; counts beyond the workload rule | `paper/manuscript/scripts/fig5_occupancy.py`; workload rule in `report_main.py` | `results/main_fleets.csv`, `results/main_load_rule.csv` | Figure: yes. Workload rule: main-yard instances |
+| Fig. 6(d): winners as theta varies beyond the calibrated range | `fluid_check.py`; `paper/manuscript/scripts/fig5_occupancy.py` | `results/main_fleets.csv`, `results/fluid_check.json` | Yes |
+| Sections 3.3, 5.2 and 5.3: kappa, coupling budget, fluid and simulated cost ratios (with the test without the price factor), decisions priced on the workload rule, switch points of the lower envelope in theta, 300 t against 550 t as the heavy-block share grows | `fluid_check.py`, `fluid_verify.py` | `results/main_fleets.csv`, `results/main_load_rule.csv`, `results/heavy_share_fleets.csv`, `results/runs_compact/tasks_main.csv`, `results/runs_compact/tasks_heavy_share.csv`; output `results/fluid_check.json`, `results/fluid_pairs_main.csv`, `results/fluid_pairs_heavy_share.csv`, `results/fluid_verify.json` | Yes |
+| Fig. 7: heavy-block share regimes | `fleet_scan_studies.py run heavy_share`, `report_studies.py heavy_share`; figure `paper/manuscript/scripts/fig6_regimes.py` | `results/heavy_share_fleets.csv`, `results/heavy_share_decisions.csv`, `results/heavy_share_thresholds.csv` | Counts: main-yard instances. Tables and figure: yes |
 | Liu sample with extended mixes (dense cost grid) | `compare_liu_mixes.py` | `results/main_fleets.csv`, `results/delay_cap_fleets.csv`, `results/tier_speeds_fleets.csv`; output `results/liu_mix_compare.json` | Yes |
 | Extended mixes in 13 further conditions | `supplementary/confirm_run.py prepare-extended-mixes extended_mixes`, `run extended_mixes`, `analyse_study.py extended_mixes`, `supplementary/confirm_report.py extended-mixes` | `results/extended_mixes_fleets.csv`, `results/extended_mixes_decisions.csv`, `results/extended_mixes_report.json` | Counts: main-yard instances. Report: yes |
-| Section 5.4: lateness cap, deferred blocks | `fleet_scan_studies.py run delay_cap`, `report_delay_cap.py`, `report_delay_cap.py grid`, `report_delay_cap.py late` | `results/delay_cap_fleets.csv`, `results/delay_cap_grid.csv`, `results/delay_cap_late_blocks.csv`, `results/delay_cap_axis.csv` | Counts and late blocks: main-yard instances. Pricing: yes |
+| Section 5.4 and Fig. 8: lateness cap, deferred blocks | `fleet_scan_studies.py run delay_cap`, `report_delay_cap.py`, `report_delay_cap.py grid`, `report_delay_cap.py late` | `results/delay_cap_fleets.csv`, `results/delay_cap_grid.csv`, `results/delay_cap_late_blocks.csv`, `results/delay_cap_axis.csv` | Counts and late blocks: main-yard instances. Pricing and figure `paper/manuscript/scripts/fig7_service.py`: yes |
 | On-time targets of 90% and 98% | `supplementary_outage/service_level.py prepare/run/analyse/report` | `results/service90_fleets.csv`, `results/service98_fleets.csv`, `results/service98_precheck.csv`, `results/service_level_decisions.csv`, `results/service_level_report.json` | Main-yard instances; tables given |
 | Restricted coupling rule | `fleet_scan_studies.py run overweight_only`, `report_studies.py overweight_only` | `results/overweight_only_fleets.csv`, `results/overweight_only_por.csv` | Counts: main-yard instances. Tables given |
 | Alignment time | `fleet_scan_studies.py prepare-delta-axis delta_axis`, `prepare-delta-axis-mix delta_axis_mix`, `run`, `report_studies.py delta-axis` | `results/delta_axis_fleets.csv`, `results/delta_axis_mix_fleets.csv`, `results/delta_axis_levels.csv`, `results/delta_axis_summary.md` | Main-yard instances; tables given |
-| One transporter out: N-1 sizing | `supplementary_outage/outage_sizing.py` | `results/outage_sizing_fleets.csv`, `results/outage_sizing_decisions.csv`, `results/outage_sizing_summary.json` | Main-yard instances (block masses); tables given |
-| One transporter out: service lost | `supplementary_outage/outage_service.py prepare/run/analyse` | `results/outage_service_fleets.csv`, `results/outage_service_report.json`, `results/outage_service_report.md` | Main-yard instances; tables given |
-| Section 5.5, Table 6: search depth, search dependence and grading | `greedy_level.py`, `analyse_study.py`, `report_main.py`, `decision_strength.py` | `results/main_search_levels.csv`, `results/grading_series.csv`, `results/grading_decisions.csv`, `results/main_runs_compact.csv` | Levels: main-yard instances. Agreement and grading: yes |
+| Redundancy estimate from reduced capacity compositions | `supplementary_outage/outage_sizing.py` | `results/outage_sizing_fleets.csv`, `results/outage_sizing_decisions.csv`, `results/outage_sizing_summary.json` | Yes (run tables and block masses) |
+| Service loss with reduced capacity composition | `supplementary_outage/outage_service.py prepare/run/analyse` | `results/outage_service_fleets.csv`, `results/outage_service_report.json`, `results/outage_service_report.md` | Main-yard instances; tables given |
+| Section 5.5, Table 6: search depth, search dependence and grading | `greedy_level.py`, `analyse_study.py`, `claim_checks.py` (four labour measures), `report_main.py` (shift labour), `decision_strength.py` | `results/main_search_levels.csv`, `results/grading_series.csv`, `results/grading_decisions.csv`, `results/main_runs_compact.csv` | Levels: main-yard instances. Agreement and grading: yes |
 | Boundary re-search | `boundary_search.py select/run/analyse` | `results/boundary_search_series.csv`, `results/boundary_search_summary.json` | Main-yard instances; tables given |
 | Exact benchmark | `exact_slices.py`, `exact_model.py`, `exact_run.py`, `exact_analyse.py` | `results/exact_kstar.csv`, `results/exact_decisions.csv`, `results/exact_gap.csv`, `results/exact_summary.md`, `results/exact_greedy.json` | Main-yard instances; tables given |
 | Adversarial bound (one transporter fewer for coupling-reliant fleets) | `decision_strength.py bound` | `results/search_bound.json` | Yes |
@@ -106,18 +109,105 @@ the heavy blocks' share of handling time.
 | Handling-time noise, robust sizing (Fig. S1) | `schedule_replay.py main`, `robust_sizing.py`; figure `paper/manuscript/scripts/figS1_robust.py` | `results/main_replay.json`, `results/robust_series.csv`, `results/robust_decisions.csv`, `results/robust_summary.md` | Replay and sizing: main-yard instances. Figure: yes |
 | Labour-specific schedules | `supplementary/labour_schedules.py` | `results/runs_compact/main.csv`, `results/main_fleets.csv`; output `results/labour_schedules_series.csv`, `results/labour_schedules_decisions.csv`, `results/labour_schedules_summary.json` | Yes |
 | Tier-specific speeds | `report_tier_speeds.py` | `results/tier_speeds_fleets.csv`, `results/tier_speeds_jiang_fleets.csv`, `results/tier_speeds_decisions.csv` | Counts: main-yard instances. Comparison: yes |
-| Second case (Table 7) | `fleet_scan_studies.py prepare-second-case second_case`, `run second_case`, `analyse_study.py second_case`, `schedule_replay.py second_case`, `report_second_case.py` | `pone.0265047.s001.xlsx`, `paper/runs/second_case_scan/*`, `data/liu2022_distance_closure.csv` | Yes, end to end |
-| Lower bound at four transporters (Section 6) | `bounds_simple.py`, `bounds_colgen.py`, `bounds_cpsat.py` | `results/bounds_final.csv`, `results/bounds_L4_summary.csv` | Main-yard instances |
+| Second case (Table 7) | `fleet_scan_studies.py prepare-second-case second_case`, `run second_case`, `analyse_study.py second_case`, `schedule_replay.py second_case`, `report_second_case.py` | `pone.0265047.s001.xlsx`, `data/second_case_extension_runs.csv`, `paper/runs/second_case_scan/scratch.json`, `data/liu2022_distance_closure.csv` | Yes, end to end |
+| Lower bound at four transporters (Supplementary Section S7) | `bounds_simple.py`, `bounds_colgen.py`, `bounds_cpsat.py` | `results/bounds_final.csv`, `results/bounds_L4_summary.csv` | Main-yard instances |
 | Run tables | `export_runs.py` | `results/runs_compact/*.csv` | Main-yard run files |
-
-Not yet in this repository: the fluid-model cost ratios of Sections 5.2 and 5.3 and the switch statistics of the
-lower envelope in r (Section 5.2).
 
 ## Licences
 
-Code: MIT (`LICENSE`). Tables, design files and price data: CC BY 4.0 (`LICENSE-DATA.md`); third-party data keep their
-original licences.
+Code: MIT (`LICENSE`). Tables, design files, block masses and price data: CC BY 4.0 (`LICENSE-DATA.md`); third-party
+data keep their original licences.
 
-## Differences from the working copy
+## Recompute the decision checks
 
-In the released copy, the name of the main shipyard is replaced by a neutral term, and comments that cite internal working documents are shortened, in: `paper/code/common/core.py`, `paper/code/common/params.py`, `paper/code/search/config.json`, `paper/code/instances/liu_days.py`, `paper/code/instances/instance_setup.py`, `paper/manuscript/scripts/style.py`, `fleet_sizing/code/fleet_scan.py`, `fleet_sizing/code/price_curve.py`, `fleet_sizing/code/boundary_search.py`, `fleet_sizing/solver_reference/common/core.py`, `fleet_sizing/solver_reference/search/alns.py`, `fleet_sizing/solver_reference/search/baselines.py`, `fleet_sizing/solver_reference/search/config.json`, `fleet_sizing/solver/common/core.py`, `fleet_sizing/solver/search/alns.py`, `fleet_sizing/solver/search/baselines.py`, `fleet_sizing/solver/search/config.json`, `fleet_sizing/supplementary/confirm_run.py`, `fleet_sizing/supplementary_outage/outage_service_common.py`. Comments, docstrings and report labels are in English in every released file. In `fleet_scan.py`, the file-integrity check of a study no longer includes an unreleased working document. The supplementary drivers read their design files directly, without a checksum list, and the design files are released without the prose fields that the code never reads. The figure scripts create their output folder. Where names are renamed, a few lines that parsed the old names by width, and the keys of the outage report, are adapted. Report files that need main-yard runs to be rewritten (outage, on-time targets, robust sizing, vehicle-time summary) carry the labels of the released code; their numbers are unchanged, and the other supplementary reports are rewritten by the released code. The code is otherwise identical to the version used for the results.
+From the repository root:
+
+```console
+python fleet_sizing/code/decision_checks.py --results fleet_sizing/results --out decision_check_output
+python fleet_sizing/code/fluid_check.py
+python fleet_sizing/code/fluid_verify.py
+```
+
+The decision check reproduces 6,480 cost comparisons and quotation tie thresholds, 1,620 workload-rule decisions,
+service at the original count on 30 fresh days for 42 fleets, and the distinct fleet counts of the lateness-cap study.
+Its outputs are `cost_flip_thresholds.csv`, `workload_rule_decisions.csv`, `fresh_days_fixed_count.csv` and
+`decision_checks.json`. Sections 5.1, 5.2 and 5.5 and Supplementary Sections S5 and S9 use these outputs.
+The quotation sensitivity increases only the winner's fleet capital price, holding every rival and labour cost fixed.
+It is a deterministic tie threshold, not an estimate of price uncertainty. A workload-rule count below the smallest
+qualifying stored count is marked unsupported by the available schedule pool, without claiming physical infeasibility.
+
+## Fleet aliases in the lateness-cap tables
+
+The reference `MX1` and `MX2` labels mean 270 t units plus one or two covering heavy units. They duplicate the explicit
+`L270_H500x1` / `L270_H500x2` types for the Jiang and uniform profiles, and `L270_H425x1` / `L270_H425x2` for the Liu profile.
+The tables retain these rows so that existing analyses remain reproducible. Count distinct physical compositions when
+reporting fleets: eight labels that need one fewer vehicle without a cap represent six fleet-condition pairs and five
+fleet types. The candidate description has eleven reference types and ten further mix types.
+
+## Figures and data access
+
+The seven statistical and mechanism figure scripts in `paper/manuscript/scripts/` are
+`fig1_mechanism.py` (Fig. 2), `fig3_tradeoff.py` (Fig. 4), `fig4_winners.py` (Fig. 5),
+`fig5_occupancy.py` (Fig. 6), `fig6_regimes.py` (Fig. 7), `fig7_service.py` (Fig. 8) and
+`figS1_robust.py` (Fig. S1). They read the released aggregate results. Set `OE_FIG_OUT` to select an
+output folder; otherwise they write to `paper/manuscript/figures/`.
+
+The current introduction (Fig. 1) and evaluation framework (Fig. 3) use the included SVG sources
+`paper/latex/figs/fig_intro_b.svg` and `fig_framework.svg`. Export them with:
+
+```console
+python paper/figs/make_svg_figures.py
+```
+
+This command writes vector PDFs and 300 dpi PNG previews alongside the SVG inputs. Chrome or Chromium
+must be installed; set `CHROME` to its executable path when it is not found automatically.
+Together these sources reproduce all eight main figures and the supplementary figure.
+
+The fluid-model scripts reproduce all 9,450 main comparisons, the one-sided 1.10 screen,
+the 630 heavy-share comparisons and the lower envelope in theta. CSV field `r` and the internal
+cost-code argument denote the paper's capital-to-labour ratio theta.
+
+The main yard's layout, generated instances and schedules remain protected. Their block masses and aggregate fleet
+and run results are included. Aggregate analyses can be recomputed without the layout; regenerating those schedules
+requires reviewer access to protected inputs. The second case can be generated and run from its published source data.
+
+
+## Recompute the reported table statistics
+
+```console
+python fleet_sizing/code/claim_checks.py
+```
+
+This standard-library script reproduces all 6,480 main procurement winners and all 3,600 slow-speed/long-handling
+decisions, including the 540 without a qualifying fleet. It writes `table_checks.json`, `search_depth_summary.json`,
+`search_depth_decisions.csv`, `slow_handling_max_coupling.csv`, `vehicle_time_main_summary.json` and
+`vehicle_time_main_pairs.csv` under `fleet_sizing/results/`. Use `--out DIRECTORY` to write elsewhere.
+The grid values stored to three decimals in the slow-handling and lateness-cap tables identify the full-precision
+theta values in `main_decisions.csv`; the script uses those full-precision values for pricing.
+
+Figure 6(b) and the vehicle-time statistics in Section 5.2 use the main study only: 266 fleet pairs outside the
+heavy-tail profile with coupled-block shares above 1% and positive extra working time. The corresponding occupancy
+and partner-waiting medians are 89.8% and 2.1%. Coupled occupancy includes repeated service and alignment; partner waiting excludes alignment. The existing `vehicle_time_series.csv`, `vehicle_time_pairs.csv` and
+`vehicle_time_summary.json` also contain the additional mixes under the 120-minute cap; their 275-pair summary is
+retained as a distinct aggregate scope. No underlying schedule or run record is discarded.
+
+The search-depth row in Table 6 and Supplementary Table S1 reprices 6,480 decisions across four labour measures by
+replacing only K. Working-time and overtime terms are retained from the final schedules in `main_fleets.csv`.
+The single-carry category uses the coupled share of those final schedules. These comparisons measure the procurement
+effect of count estimates; they do not reselect the schedules at each search depth. `report_main.py` separately
+reports search-depth agreement under shift labour only (1,620 decisions).
+
+## Capacity removal and the empirical fluid screen
+
+The outage scripts analyse reduced capacity compositions using each fleet family's scanned, prefix start locations.
+They do not delete an individual vehicle while preserving every survivor's original capacity and position.
+The count estimate `max(K*_X, K*_(X-)) + 1` is stored in existing fields named `K_N1`.
+It is a redundancy estimate, not an arbitrary-vehicle failure guarantee. Coupled shares in `outage_sizing_*`
+describe normal-operation schedules with all purchased vehicles available; the 87.5% share has that scope.
+The reduced-composition service probabilities use the same reassignment of starts. Existing result files retain
+their numerical values and field names, including `worst unit out`; read those labels as capacity-class variants.
+
+The 1.10 fluid screen uses occupancy calibrated from the covering fleet's schedules in the same simulated conditions.
+Its 7,311 exclusions and one false exclusion among 9,450 comparisons describe this calibrated check, not independently
+validated prediction on a new yard or input-only occupancy estimates. The two-member 2–18% coupling budget uses
+shift labour and the fitted power law with exponent 0.84; the range across all five price curves is 1.9–21.8%.

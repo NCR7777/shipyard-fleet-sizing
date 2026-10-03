@@ -9,6 +9,7 @@ Runs are started at below-normal process priority so that they use only CPU left
   python fleet_scan_studies.py prepare-sensitivity sensitivity | prepare-tier-speeds tier_speeds | prepare-heavy-share heavy_share | prepare-second-case second_case
   python fleet_scan_studies.py run <study> [workers]
 """
+import csv
 import json
 import math
 import sys
@@ -211,7 +212,8 @@ def prepare_second_case(study):
     changed = liu_closure(L.DIST)                   # liu_days reads liu_data.DIST at call time
     n = len(L.DIST)
     assert all(L.DIST[i][k] <= L.DIST[i][j] + L.DIST[j][k] for i in range(n) for j in range(n) for k in range(n))
-    runs = [json.loads(x) for x in (PAPER / 'runs/second_case_scan/runs.jsonl').read_text(encoding='utf8').splitlines()]
+    runs = [{k: (v if k == 'model' else json.loads(v)) for k, v in row.items()}
+            for row in csv.DictReader(open(ROOT / 'data/second_case_extension_runs.csv', encoding='utf8'))]
 
     def old_nstar(k, m, X):                         # as liu_days.summary: mean weekly on-time rate over 5 seeds
         on = {}
@@ -267,8 +269,8 @@ def prepare_overweight_only(study):
     """The 72 mix series of the main study under overweight-only coupling (directory `overweight_only`)."""
     fleet_scan._paper_path()
     main_counts = json.loads((STUDY_ROOT / 'main' / 'series.json').read_text(encoding='utf8'))
-    rig = {(o['cell'], o['family']): o['K_known'] for o in
-           json.loads((ROOT / 'earlier_study/results/pooled_counts_rigid_tmax120.json').read_text(encoding='utf8'))}
+    rig = {(o['cell'], o['family']): int(o['K_start']) for o in
+           csv.DictReader(open(STUDY_ROOT / 'results/overweight_only_fleets.csv', encoding='utf-8-sig'))}
     specs, bases = [], {}
     for sp in main_counts:
         if not sp['family'].startswith('MX'):

@@ -134,15 +134,6 @@ def main():
     liu = {r['family']: ival(r['K_final']) for r in fr if r['cell'] == 'liu_short_baseline'}
     L += ['- K* per fleet type in the Liu condition (`liu_short_baseline`): ' + ', '.join('%s %s' % (f, k) for f, k in sorted(liu.items(), key=lambda x: x[1])),
           '- smallest K* over all 384 series: %d' % min(ival(r['K_final']) for r in fr), '']
-    # 2 old-grid winners: earlier scan vs this study
-    old = rcsv(RES / 'main_decisions_old_grid.csv')
-    ref = {(r['cell'], float(r['alpha']), int(r['r']), r['labour']): r['ref_winner'] for r in
-           rcsv(ROOT / 'earlier_study' / 'results' / 'reference_decisions_tmax120.csv')}
-    mine = {(x['cell'], float(x['model'].split('_')[1]), int(float(x['r'])), x['labour']): x['winner'] for x in old}
-    ch = [k for k in ref if ref[k] != mine[k]]
-    L += ['## 2. Winners on the old grid (1,620 decisions): earlier scan → this study', '',
-          'changed %d / %d; by labour measure: %s; conditions involved: %d.' % (
-        len(ch), len(ref), {lab: sum(k[3] == lab for k in ch) for lab in C.LAB3}, len({k[0] for k in ch})), '']
     # 3 search dependence
     main = rcsv(RES / 'main_decisions.csv')
     L += ['## 3. Search dependence of the decisions (main grid, 6,480 decisions; the lower bounds proved no count '

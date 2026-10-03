@@ -8,7 +8,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAPER = os.path.normpath(os.path.join(HERE, '..', '..'))
-MAP_PATH = os.path.join(PAPER, 'instances', 'map', 'rs-tif-09.map.json')
+MAP_PATH = os.path.join(PAPER, 'instances', 'map', 'main_road_network.json')
 MAP_SHA256 = '9b6ce0a076ce250ead26cc7d80d82ef194164d196150068b1da52b7fe9d52c2a'   # SHA-256 of the map file
 JIANG_TASKS = os.path.join(PAPER, 'params', 'jiang2021_tasks.csv')
 

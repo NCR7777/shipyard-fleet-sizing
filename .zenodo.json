@@ -1,7 +1,7 @@
 {
- "title": "Code and data for: Service-constrained sizing and composition of shipyard block-transporter fleets with cooperative lifting",
+ "title": "Code and data for: Single-vehicle capacity versus cooperative transport in the service-constrained sizing of shipyard block-transporter fleets",
  "upload_type": "software",
- "version": "2.0",
+ "version": "2.1",
  "description": "Scheduling, fleet-sizing and pricing code, the result tables of every study, the run-level results of all 214,210 scheduling runs and the transporter price sources. The digitised road network of the main shipyard, the instances generated on it and the individual schedules are not included, because travel times reveal the facility layout; they are available to reviewers on request. The second case uses the published data of Liu et al. (2022) and can be rerun end to end. See README.md.",
  "creators": [
   {

@@ -1,0 +1,40 @@
+{
+ "w_bar_vs_vt_decomposition": {
+  "covering_fleets": 30,
+  "max_abs_diff_min": 2.842170943040401e-14
+ },
+ "single_carry_at_r30_outside_heavy_tail": {
+  "single": 590,
+  "decisions": 600,
+  "pct": 98.33
+ },
+ "recomputed_pairs": {
+  "comparisons": 9450,
+  "max_abs_diff_fluid": 1.5365486660812167e-13,
+  "max_abs_diff_sim": 8.881784197001252e-16
+ },
+ "price_free_test": {
+  "fleet_pairs": 210,
+  "pearson": 0.9672,
+  "spearman": 0.9549,
+  "median_count_ratio_over_factor_minus1_pct": 6.56
+ },
+ "contending_fleets": {
+  "fleets": 42,
+  "at_Kstar_on_time_98pct_or_more": 36,
+  "shortfalls_of_the_others_blocks": [
+   1,
+   20,
+   38,
+   44,
+   45,
+   52
+  ],
+  "with_runs_at_Kstar_minus1": 41,
+  "Kstar_minus1_day_without_capped_schedule": 32,
+  "Kstar_minus1_best_run_on_time_pct": [
+   55.7,
+   95.8
+  ]
+ }
+}

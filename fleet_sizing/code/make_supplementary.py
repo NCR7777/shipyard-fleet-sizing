@@ -1,8 +1,7 @@
 """Supplementary tables of the transporter price sources (S1) and of the capital-to-labour price ratio r
-(`S2_price_ratio.csv`).
+(`price_ratio.csv`).
 
-S1: the 33 award records of earlier_study/data/price_sources_R24.md, section 1.1 (the same rows and parser as
-price_curve.records), in English: descriptive fields translated, buyers by English name, the notice excerpt kept in the
+Award table: 33 public procurement records in results/price_sources.csv, in English: descriptive fields translated, buyers by English name, the notice excerpt kept in the
 original Chinese, dates and announcement links as published. buyer_cluster numbers the buyers in the order of the
 cluster bootstrap, so that price_curve refits identically from S1 alone in the public release (no working record).
 Price-ratio table: every combination behind the calibrated interval of r (price_curve.r_range): capital recovery over
@@ -10,7 +9,7 @@ Price-ratio table: every combination behind the calibrated interval of r (price_
 and two annual-hour bases, with the affine price of a 270 t transporter (VAT removed) from results/price_curve.json.
 The interval limits must equal price_curve.json.
 
-  python make_supplementary.py   -> results/S1_price_sources.csv, results/S2_price_ratio.csv
+  python make_supplementary.py   -> results/price_sources.csv, results/price_ratio.csv
 """
 import csv
 import itertools
@@ -130,7 +129,7 @@ LINKS = [('）；结果', '); result'), ('招标（重新招标）', 'tender (re
          ('招标（重招）', 'tender (re-tender) '), ('；结果', '; result'), ('；中标', '; award'), ('（重发', '(reissued'),
          ('（首发', '(first issue'), ('；招标', '; tender'), ('招标', 'tender '), ('（', ' ('), ('）', ')')]
 CJK = re.compile('[　-〿一-鿿＀-￯]')
-MD = 'earlier_study/data/price_sources_R24.md'
+MD = 'data/award_notice_excerpts.md'
 
 
 def one(value, table, allow_none=False):
@@ -210,13 +209,13 @@ if __name__ == '__main__':
     has_md = (R.ROOT / MD).exists()                # the public release has Table S1 but not the working record
     a, b = (s1() if has_md else None), s2()
     if a:
-        write(RES / 'S1_price_sources.csv', a)
-    write(RES / 'S2_price_ratio.csv', b)
+        write(RES / 'price_sources.csv', a)
+    write(RES / 'price_ratio.csv', b)
     sup = HERE.parents[1] / 'paper' / 'supplementary'          # files submitted with the manuscript
     if sup.parent.exists():
         import shutil
         sup.mkdir(exist_ok=True)
-        shutil.copy2(RES / 'S1_price_sources.csv', sup / 'S1_price_sources.csv')
-        shutil.copy2(RES / 'S2_price_ratio.csv', sup / 'S2_price_ratio.csv')
+        shutil.copy2(RES / 'price_sources.csv', sup / 'price_sources.csv')
+        shutil.copy2(RES / 'price_ratio.csv', sup / 'price_ratio.csv')
     print('S1: %s; S2: %d combinations; interval limits equal price_curve.json' % (
         '%d records (%d transporters)' % (len(a), sum(r['quantity'] for r in a)) if a else 'kept (no working record)', len(b)))

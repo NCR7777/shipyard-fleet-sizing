@@ -1,30 +1,32 @@
 from common import *
 from style import *
 import matplotlib as mpl
+from matplotlib.lines import Line2D
 setup()
-f=fleets(); f['ms']=f.cell.str.split('_').str[0]; f['h']=f.cell.str.split('_').str[1]; f['due']=f.cell.str.split('_').str[2]
+f=fleets(); f['ms'],f['h'],f['due']=zip(*f.cell.map(split))
 tiers=[200,250,270,300,325,380,425,500,550]
-names={'jiang':'jiang  Jiang empirical (max 450 t)','lightskew':'lightskew  light-skewed (max 500 t)','uniform':'uniform  uniform 100–500 t',
-       'extraheavy':'extraheavy  extra-heavy tail (to 800 t)','rohcha':'rohcha  Roh–Cha sample (max 544 t)','liu':'liu  Liu sample (max 399 t)'}
-cover={'jiang':500,'lightskew':500,'uniform':500,'extraheavy':None,'rohcha':550,'liu':425}
-fig,axs=plt.subplots(2,3,figsize=(7.48,4.3),sharex=True)
-hc={'short':BLUE,'massdep':GREY,'long':LGREY}; hl={'short':'short short handling','massdep':'massdep mass-dependent','long':'long long loading'}
-for ax,ms in zip(axs.flat,['jiang','lightskew','uniform','extraheavy','rohcha','liu']):
+fig,axs=plt.subplots(2,3,figsize=(W,4.1),sharex=True,layout='constrained')
+sty={'short':dict(color=BLUE,ls='-',marker='o',lw=1.5,zorder=3),'massdep':dict(color=GREY,ls='--',marker='s',lw=1.1,zorder=2),
+     'long':dict(color=MGREY,ls=':',marker='^',lw=1.1,zorder=2)}
+for ax,ms in zip(axs.flat,PROFILES):
     g=f[(f.ms==ms)&(f.due=='baseline')&f.family.isin([str(t) for t in tiers])]
-    for h in ['long','massdep','short']:
+    for h in ['short','massdep','long']:
         x=g[g.h==h].copy(); x['q']=x.family.astype(int); x=x.sort_values('q')
-        ax.plot(x.q,x.K_final,'-o',color=hc[h],lw=1.6 if h=='short' else 1.2,ms=3.2,label=hl[h],zorder=3 if h=='short' else 2)
-    if cover[ms]:
-        ax.axvline(cover[ms],color=INK2,lw=0.7,ls=(0,(3,2)))
-        ax.text(cover[ms]-5,0.6,'single-carry\ntier',ha='right',va='bottom',fontsize=6.2,color=INK2)
+        ax.plot(x.q,x.K_final,ms=3.2,mfc='white' if h!='short' else sty[h]['color'],mew=0.8,label=HANDLING[h],**sty[h])
+    if COVER[ms]:
+        ax.axvline(COVER[ms],color=INK2,lw=0.7,ls=(0,(3,2)))
     else:
-        ax.text(545,0.6,'no single-carry tier:\n9% of blocks > 550 t',ha='right',va='bottom',fontsize=6.2,color=INK2)
-    ax.set_title(names[ms],fontsize=7.6)
-    ax.set_ylim(0,None); ax.yaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
-    ax.set_xticks([200,270,325,380,425,500,550]); 
+        t=pd.read_csv(RES/'runs_compact'/'tasks_main.csv'); t=t[t.cell==g.cell.iloc[0]]
+        share=(t.mass_t>550).mean()
+        ax.text(0.97,0.04,'no tier carries every block:\n%.1f%% of blocks > 550 t'%(100*share),transform=ax.transAxes,
+                ha='right',va='bottom',fontsize=7,color=INK2,bbox=BOX)
+        print('heavy-tail profile: share of blocks above 550 t %.4f'%share)
+    ax.set_title('%s (%s)'%(PROFILE[ms],RANGE[ms]))
+    ax.set_ylim(0,None); ax.yaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=4,integer=True)); ax.grid(axis='x',visible=False)
+    ax.set_xticks(tiers); ax.tick_params(axis='x',labelrotation=90)
 for ax in axs[1]: ax.set_xlabel('Transporter capacity tier (t)')
-for ax in axs[:,0]: ax.set_ylabel('Transporters needed, K*')
+for ax in axs[:,0]: ax.set_ylabel('Transporters needed, $K$*')
 h,l=axs[0,0].get_legend_handles_labels()
-fig.legend(h[::-1],l[::-1],loc='upper center',ncol=3,bbox_to_anchor=(0.5,1.03))
-fig.tight_layout(rect=(0,0,1,0.96))
+h.append(Line2D([],[],color=INK2,lw=0.7,ls=(0,(3,2)))); l.append('smallest tier carrying every block')
+fig.legend(h,l,loc='outside upper center',ncol=4,handlelength=2.6)
 save(fig,'fig3_tradeoff')

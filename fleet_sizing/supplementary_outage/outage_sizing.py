@@ -1,29 +1,18 @@
-"""One-unit-outage (N-1) sizing and pricing from the main results (no new runs).
+"""Redundancy estimate from qualifying counts of capacity compositions (no new schedules).
 
-A fleet X is N-1 robust at count K if it still meets the service specification (pooled 95 %, 120-min cap) with any one
-transporter out of service on every day. Removing a unit leaves
-  - a light (or, for homogeneous fleets, any) unit out: X at K - 1          -> qualifies iff K - 1 >= K*_X
-  - a heavy unit out (mixes only): X- at K - 1, X- = X with one heavy unit fewer
-    (MX2 -> MX1 -> 270, L<l>_H<q>x h -> x(h-1) -> <l>)                  -> qualifies iff K - 1 >= K*_{X-}
-(counts are embedded: a fleet that qualifies at K qualifies at every larger K), so
-  K_N1(X) = max(K*_X, K*_{X-}) + 1.
-The start positions differ by one place from the scanned fleet of X- (immaterial for the instance).
-Each fleet is priced at K_N1 with the usual pricing knapsack (one stored run per day, count <= K_N1, no block over the
-cap, minimum per-transporter crew hours at >= 95 % on time) on the main grid (5 price curves x 9 r x 4 labour measures).
-Coupled share of a fleet: blocks coupled in those nominal schedules (all units available).
+The estimate is max(K*_X, K*_(X-)) + 1, where X- has one heavy unit fewer or equals
+X for homogeneous fleets. It uses each composition's scanned prefix start positions.
+It does not preserve the identity, capacity-position pairing or original start position
+of every surviving vehicle after deleting an actual purchased unit. Consequently it
+does not establish service after an arbitrary individual failure.
 
-Value of the coupling option (outside the extra-heavy scenario, i.e. where some tier carries every block): the extra
-cost of the cheapest fleet when coupling is not available at all, nominally and under N-1 sizing; the difference is
-its insurance value.
-Admissible without coupling: nominally, covering homogeneous tiers and mixes with a covering heavy tier; under N-1,
-covering homogeneous tiers and mixes with >= 2 covering heavy units (the fleet must lift every block with any unit out).
-  upper bound: cheapest covering homogeneous tier (exact: such fleets cannot form coupled teams)
-  lower bound: cheapest admissible fleet priced with the coupling-allowed counts (no-coupling counts can only be higher)
+Existing fields named K_N1 retain this count estimate. Priced schedules and coupled
+shares are normal-operation schedules with all purchased units available. The
+no-coupling comparisons concern admissible capacity compositions under this estimate.
 
-Inputs : `results/runs_compact/main.csv`, `delay_cap.csv` (rows `T120_*` of the delay-cap study), `main_fleets.csv`,
-         `delay_cap_fleets.csv`, `price_curve.json`
-Outputs: results/outage_sizing_fleets.csv, outage_sizing_decisions.csv, outage_sizing_summary.json
-  python outage_sizing.py          # about two minutes
+Inputs: released main/delay-cap run tables, fleet counts, price curves and block masses.
+Outputs: results/outage_sizing_fleets.csv, outage_sizing_decisions.csv,
+         outage_sizing_summary.json. Run: python outage_sizing.py
 """
 import csv
 import json
@@ -94,7 +83,7 @@ def priced_row(runs, K):
 def main():
     runs, ks = load_runs(), kstar()
     maxmass = {}
-    with open(RES / 'runs_compact' / 'tasks_R4.csv', encoding='utf-8-sig') as f:
+    with open(RES / 'runs_compact' / 'tasks_main.csv', encoding='utf-8-sig') as f:
         for r in csv.DictReader(f):
             maxmass[r['cell']] = max(maxmass.get(r['cell'], 0), float(r['mass_t']))
     fleets, nom, n1 = [], {}, {}

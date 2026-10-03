@@ -1,0 +1,52 @@
+{
+  "cost": {
+    "decisions": 6480,
+    "median_margin": 0.024202690045781072,
+    "median_winner_capital_premium": 0.11078810528498678,
+    "capital_premium_below_0_05": 1123,
+    "capital_premium_below_0_10": 3134,
+    "median_winner_only_surcharge_h": 13.605470040868454
+  },
+  "workload": {
+    "decisions": 1620,
+    "same_type": 934,
+    "service_supported": 1334,
+    "service_not_supported": 286,
+    "median_excess_supported": 0.0,
+    "positive_excess_supported": 604,
+    "excess_above_0_05_supported": 315,
+    "max_excess_supported": 0.16235291012086783
+  },
+  "fixed_fresh": {
+    "fleets": 42,
+    "qualifying": 41,
+    "original_count_changes": {
+      "-1": 2,
+      "0": 39,
+      "1": 1
+    },
+    "exceptions": [
+      {
+        "cell": "rohcha_short_baseline",
+        "family": "500",
+        "original_count": 6,
+        "new_count": 7,
+        "days_with_capped_schedule": 29,
+        "days": 30,
+        "on_time_capped_pool": 2756,
+        "total_blocks": 2910,
+        "capped_pool_on_time_share": 0.9470790378006873,
+        "max_lateness_selected_s": 6440,
+        "missing_capped_days": "624",
+        "min_found_max_lateness_on_missing_day_s": 11126,
+        "qualifies": false
+      }
+    ]
+  },
+  "cap_aliases": {
+    "matched_summary_pairs": 30,
+    "lower_count_labels": 8,
+    "distinct_fleets": 6,
+    "distinct_types": 5
+  }
+}
